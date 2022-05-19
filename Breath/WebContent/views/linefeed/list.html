@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Breathing</title>
+<script src="../../js/jquery-3.6.0.min.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="../../css/bootstrap.min.css">
+<link rel="stylesheet" href="./css/common.css">
+<link rel="stylesheet" href="./css/main.css">
+<script src="./js/list.js"></script>
+<script>
+$(document).ready(function(){ // 실행할 기능을 정의해주세요.
+// 	updatePost();
+});
+
+	
+</script>
+</head>
+<body>
+	<!-- navigation -->
+	<nav>
+		<div class="nav-container">
+			<div class="nav-1">
+				<div class="nav-2">
+					<div class="logo" onclick="location.href='/Breath/trainerHome/detail.do'">ChloeTing</div>
+					<div class="inner">
+						<img src="./images/instagram-post.png" alt="새 게시물 작성" id="modalBtn"> 
+						<img src="./images/alert.png" alt="신고" id="report">
+					</div>
+				</div>
+			</div>
+		</div>
+	</nav>
+<!-- 	 feeds section -->
+	<main>
+	<div id="" class="feeds">
+		<input type="hidden" id="${commNum}" val="">
+	</div>
+	<!-- main-right -->
+	<div class="main-right">
+		<div class="myProfile">
+			<img class="pic" src="./images/사진1.jfif" alt="Cloe Ting님의 프로필 사진">
+			<div>
+				<span class="userID point-span">Cloe Ting</span> <span
+					class="sub-span">Fun exercise</span>
+			</div>
+		</div>
+		<!-- story section -->
+		<div class="section-story">
+			<div class="menu-title">
+				<span class="sub-title">Subscribe</span> <span class="find-more"></span>
+			</div>
+			<ul class="story-list">
+				<li>
+					<div class="gradient-wrap">
+						<img class="img-profile story" src="./images/김계란.jfif"
+							alt="wecode_bootcamp님의 프로필 사진">
+					</div>
+					<div class="profile-text">
+						<span class="userID point-span">EggBoy</span>
+					</div>
+				</li>
+				<li>
+					<div class="gradient-wrap">
+						<img class="img-profile story" src="./images/김종국.jfif"
+							alt="han_ye_seul님의 프로필 사진">
+					</div>
+					<div class="profile-text">
+						<span class="userID point-span">꾹이</span>
+					</div>
+				</li>
+				<li>
+					<div class="gradient-wrap">
+						<img class="img-profile story" src="./images/흑자.jfif"
+							alt="dntlrdl님의 프로필 사진">
+					</div>
+					<div class="profile-text">
+						<span class="userID point-span">얼굴크지않아</span>
+					</div>
+				</li>
+				<li>
+					<div class="gradient-wrap">
+						<img class="img-profile story" src="./images/말왕.jpg"
+							alt="i_icaruswalks님의 프로필 사진">
+					</div>
+					<div class="profile-text">
+						<span class="userID point-span">iamhorse</span>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	</main>
+	<!-- insert modal Start -->
+	<div id="myModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">새 게시물 만들기</h4>
+				</div>
+				<form name="insert" id="insert" method="post"
+					action="/Breath/insert.LineFeed" enctype="multipart/form-data">
+					<div class="modal-body flex">
+						<div class="imge">
+							<img src="#" class="file_input_img_btn"> <img
+								src="./images/instagram-post.png" class="file_input" alt="open">
+							<input type="file" class="file_input_hidden" alt="업로드"
+								accept="image/*" name="orgnlNm">
+						</div>
+						<div class="content">
+							<img class="pic" src="./images/사진1.jfif"
+								alt="thisisyourhyung님의 프로필 사진"> <span
+								class="userID point-span">Cloe Ting</span>
+							<textarea aria-label="문구 입력..." placeholder="문구 입력..."
+								class="lFzco" autocomplete="off" autocorrect="off"
+								name="content"></textarea>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal"
+							id="post">공유하기</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- update modal Start -->
+	<div id="updateModal-content" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">게시물 수정하기</h4>
+				</div>
+				<form name="updated" id="updated" method="post"
+					action="/Breath/update.LineFeed" enctype="multipart/form-data">
+					<div class="modal-body flex">
+						<div class="imge">
+							<img src="#" class="file_input_img_btn"> <img
+								src="./images/instagram-post.png" class="file_input" alt="open">
+							<input type="file" class="file_input_hidden" alt="업로드"
+								accept="image/*" name="orgnlNm"> <input type="hidden"
+								name="lnfdNum" id="updateValue" value="" />
+						</div>
+						<div class="content">
+							<img class="pic" src="./images/사진1.jfif"
+								alt="thisisyourhyung님의 프로필 사진"> <span
+								class="userID point-span">Cloe Ting</span>
+							<textarea aria-label="문구 입력..." placeholder="문구 입력..."
+								class="lFzco" autocomplete="off" autocorrect="off"
+								name="content"></textarea>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal"
+							id="update">공유하기</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- 		 수정/삭제 Modal -->
+	<div id="updateModal" class="modal fade" role="dialog">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+		</div>
+		<div class="RnEpoYx5HN" role="presentation">
+			<div class="pbNvDfPMEg " role="dialog">
+				<div class="_1XyCr">
+					<div class="piCib">
+						<div class="mt3GC">
+							<input type="hidden" value="" id="hiddenValue">
+							<button type="button" class="updateBtn aOOlW -Cab_ " tabindex="0">수정하기</button>
+							<button type="button" class="deleteBtn aOOlW -Cab_ " tabindex="0">삭제하기</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- warn modal Start -->
+	<div id="warnModal" class="modal fade" role="dialog">
+		<div class="modal-dialog-warn">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">신고하기</h4>
+				</div>
+				<form name="report" id="reportForm" method="post">
+					<div class="modal-body flex warn">
+						<p>신고할 닉네임을 입력하세요.</p>
+						<input type="text" id="rprtDId" name="rprtDId" alt="warnId">
+						<p>신고사유를 입력하세요.</p>
+						<input type="text" id="rprtRsn" name="rprtRsn" alt="warnContent">
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" id="reportBtn"
+								data-dismiss="modal">신고하기</button>
+						</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+	<script>
+		// 기본 라인피드 띄우기
+		let url = window.location.href;
+		getAllList(url);
+
+		// 새 게시물 업로드 후 화면 불러오기
+		$('#post').on('click', function() {
+		insertPost();
+		console.log('html');
+		});
+
+		// 	$(function() {
+		// 		getSubscribeList();
+		// 	});
+	
+		// 신고 기능 메서드
+		$('#reportBtn').on('click', function (e) {
+			insertReport();
+			
+			$('#rprtDId').val("");
+			$('#rprtRsn').val("");
+			$('#warnModal').modal('hide');
+
+		});
+		
+		// 게시물을 삭제하고 불러오는 메서드
+		$(document).on('click', '.deleteBtn', function(e) {
+			e.stopImmediatePropagation();
+			let lnfdNum = $('#hiddenValue').attr('value');
+			deletePost(lnfdNum);
+			$('#updateModal').modal('hide');
+		});
+		
+		// 게시물을 업데이트 하고 불러오는 메서드
+		$(document).on('click', '.updateBtn', function(e) {
+			e.stopImmediatePropagation();
+			$('#updateModal').modal('hide');
+			$('#updateModal-content').modal('show');
+			let lnfdNum = $('#updateValue').attr('value');
+			updatePost();
+		});
+		
+		// 댓글을 삭제하고 불러오는 메서드
+		$(document).on('click', '.comment-heart', function(e) {
+			
+			let url = window.location.href;
+			
+			// 댓글 번호 가져오기
+			let idx = $('.comment-heart').index(this);
+			let commNum = $('.comments').eq(idx).attr('value');
+			let lnfdNum = $(this).attr('value');
+			deleteReply(url, commNum, lnfdNum);
+			console.log('html작동');
+		});
+
+		// 더보기란 클릭 시 수정/삭제를 선택할 수 있는 창이 뜨는 메서드
+		$(document).on('click', '.icon-react.icon-more', function(e) {
+			e.stopImmediatePropagation();
+			let idx = $('.icon-react.icon-more').index(this);
+			let parent = $('.lnfdNum').eq(idx).attr('value');
+			updateValue.value = parent;
+			hiddenValue.value = parent;
+			$('#updateModal').modal('show');
+		});
+		
+		// 댓글을 작성하는 메서드
+		$(document).on('click', '.submit-comment', function (e) {
+			e.stopImmediatePropagation();
+			// 게시글 번호 가져오기
+			let idx = $('.submit-comment').index(this);
+			let lnfdNum = $('.lnfdNum').eq(idx).attr('value');
+			
+			// 댓글 등록 메서드 실행
+			insertReply(lnfdNum, idx);
+			
+			// 댓글 등록 후 내부 값 초기화
+			$('.input-comment').val("");
+			
+		});
+
+		// 새 게시물 작성 창 띄우기 - 모달
+		$('#modalBtn').on('click', function(e) {
+			e.stopImmediatePropagation();
+			$('#myModal').modal('show');
+		});
+		
+
+		// 새 게시물 작성 시 업로드 사진 미리보기를 만들기
+		$(function() {
+			$('.file_input_hidden').on('change', function(e) {
+				e.stopImmediatePropagation();
+				$('.file_input').css('visibility', 'hidden');
+				$('.file_input_img_btn').css('visibility', 'visible');
+				$('.file_input_img_btn').css('max-width', '100%');
+				readURL(this);
+			});
+		});
+		function readURL(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+				reader.onload = function(e) {
+					$('.file_input_img_btn').attr('src', e.target.result);
+				}
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
+
+		// 취소버튼 클릭 시 내부 내용 초기화 하는 메서드
+		$(function() {
+			$('.close').on('click', function(e) {
+				e.stopImmediatePropagation();
+				$('.file_input').css('visibility', 'visible');
+				$('.lFzco').val("");
+				$('.file_input_img_btn').css('visibility', 'hidden');
+				$('.file_input_img_btn').attr('src', '');
+				$('.file_input_hidden').val("");
+				$('#myModal').modal('hide');
+				$('#updateModal-content').modal('hide');
+				$('#rprtDId').val("");
+				$('#rprtRsn').val("");
+				$('#warnModal').modal('hide');
+			});
+		});
+
+		// 느낌표 버튼 클릭시 신고창이 뜨는 메서드
+		$('#report').on('click', function(e) {
+			e.stopImmediatePropagation();
+			$('#warnModal').modal('show');
+		});
+
+	</script>
+</body>
+</html>

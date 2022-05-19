@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/resources/**" location="/resources/" />
+	
+	<!-- 디스패쳐 서블릿의 직속 컨트롤러  얘네에서 먼저 찾고 없으면 맵퍼 찾아간다. 맵퍼에서는 .do없애주지만 여기는 안없애주니까 쩜두 유효함-->
+	<!-- 여기는 심플URL 맵퍼 -->
+	<view-controller path="/" view-name="index"/>
+	<!-- 야는 Root로 잡힌다. 루프로 잡았으니까눈 조심해라아아아 -->
+	<!-- <view-controller path="/dsfsdgadgadfhdf" view-name="index"/> -->
+	<!-- 이제 톰켓이 제공하는 기본 서블릿으로 나가는 것은 아무것도 없어지게 된다. 즉 was가 톰캣이 더이상 아니어도 된다는 뜻이다. -->
+	<!-- 얘를 바로 뷰리져버로 넘겨준다. 그래서/WEB-INF/views/.jsp 불필요  -->
+	
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+				p:defaultEncoding="utf-8"/>
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	<context:component-scan base-package="kr.or.ddit.controller" />
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/common/login.do"/>
+			<beans:bean class="kr.or.ddit.interceptor.LoginUserLogInterceptor" 
+					p:savePath-ref="loginUserLogSavePath"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/**/modify.do"/>
+			<mapping path="/**/regist.do"/>
+			<beans:bean class="kr.or.ddit.interceptor.XSSRequestInterceptor"/>
+		</interceptor>
+	</interceptors>
+</beans:beans>

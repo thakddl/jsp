@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="clientMyPage">
+
+	<!-- 마이페이지에서 회원정보 수정하기 -->
+	<update id="updateMyPage" parameterClass="clientMyPage.vo.ClientMyPageVO">
+		update member
+		   set 
+		   	   MEM_ID   = #memId#
+			  ,MEM_PASS = #memPass#
+			  ,MEM_NAME = #memName#
+			  ,MEM_BIR  = #memBir#
+			  ,MEM_TEL  = #memTel#
+			  ,MEM_ZIP  = #memZip#
+			  ,MEM_ADD1 = #memAdd1#
+			  ,MEM_ADD2 = #memAdd2#
+			  ,MEM_MAIL = #memMail#
+		where MEM_ID = #memId#
+	</update>
+	
+	<!-- 회원탈퇴 -->
+	<update id="leaveMyPage" parameterClass="clientMyPage.vo.ClientMyPageVO">
+		update member
+		   set MS_ID = 'delete'
+		 where MEM_ID = #memId# 
+	</update>
+	
+	<!-- 회원정보 가져오기 resultMap -->
+	<resultMap id="getMyPageMap" class="clientMyPage.vo.ClientMyPageVO">
+		<!-- <result property="memPass" column="MEM_PASS"/> -->
+		<result property="memName" column="MEM_NAME"/>
+		<result property="memBir" column="MEM_BIR"/>
+		<result property="memTel" column="MEM_TEL"/>
+		<result property="memZip" column="MEM_ZIP"/>
+		<result property="memAdd1" column="MEM_ADD1"/>
+		<result property="memAdd2" column="MEM_ADD2"/>
+		<result property="memMail" column="MEM_MAIL"/>
+	</resultMap>
+	
+	<!-- 회원정보 가져오기 -->
+	<select id="getMyPage" parameterClass="String" resultMap="getMyPageMap">
+		select  
+				MEM_ID
+		       ,MEM_NAME
+		       ,MEM_BIR 
+		       ,MEM_TEL 
+		       ,MEM_ZIP 
+		       ,MEM_ADD1
+		       ,MEM_ADD2
+		       ,MEM_MAIL
+		  from member 
+		 where MEM_ID = #memId#     
+	</select>
+
+	
+</sqlMap>

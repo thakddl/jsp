@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="trainerVideo">
+	<resultMap class="trainerVideo.vo.TrainerVideoVO" id="trainerVideoMap">
+		<result property="contentNum" column="CONTENT_NUM"/>
+		<result property="trainerId" column="TRAINER_ID"/>
+		<result property="postDt" column="POST_DT"/>
+		<result property="content" column="CONTENT"/>
+		<result property="views" column="VIEWS"/>
+		<result property="ipAdd" column="IP_ADD"/>
+		<result property="updateDt" column="UPDATE_DT"/>
+		<result property="deleteDt" column="DELETE_DT"/>
+		<result property="status" column="STATUS"/>
+		<result property="atchId" column="ATCH_ID"/>
+		<result property="filePath" column="FILE_PATH"/>
+		<result property="fileExtns" column="FILE_EXTNS"/>
+		<result property="saveNm" column="SAVE_NM"/>
+		<result property="origNm" column="ORGNL_NM"/>
+	</resultMap>
+	
+	<insert id="insertVideo" parameterClass="trainervideoVO">
+		<selectKey keyProperty="contentNum" resultClass="String">
+			SELECT SEQ_TRAINER_VD.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO TRAINER_VIDEO (CONTENT_NUM,TRAINER_ID,POST_DT,CONTENT,VIEWS,IP_ADD,UPDATE_DT,DELETE_DT,STATUS,ATCH_ID)
+		 VALUES(#contentNum#,#trainerId#,SYSDATE,#content#,#views#,#ipAdd#,#updateDt#,#deleteDt#,#status#,#atchId#)
+	</insert>
+	
+	<resultMap class="trainervideoVO" id="trainerVideoMap2">
+		<result property="contentNum" column="CONTENT_NUM"/>
+		<result property="trainerId" column="TRAINER_ID"/>
+		<result property="postDt" column="POST_DT"/>
+		<result property="content" column="CONTENT"/>
+		<result property="views" column="VIEWS"/>
+		<result property="status" column="STATUS"/>
+		<result property="atchId" column="ATCH_ID"/>
+		<result property="filePath" column="FILE_PATH"/>
+		<result property="fileExtns" column="FILE_EXTNS"/>
+		<result property="saveNm" column="SAVE_NM"/>
+	</resultMap>	
+		
+	<select id="getAllVideoList" remapResults="true" parameterClass="trainervideoVO" resultMap="trainerVideoMap2">
+		SELECT A.CONTENT_NUM as CONTENT_NUM,
+			   A.TRAINER_ID as TRAINER_ID,
+			   A.POST_DT AS POST_DT,
+       		   A.CONTENT AS CONTENT,
+       		   A.VIEWS AS VIEWS,
+       		   A.STATUS AS STATUS,
+       		   B.FILE_PATH AS FILE_PATH,
+       		   B.FILE_EXTNS AS FILE_EXTNS,
+       		   B.ATCH_ID AS ATCH_ID,
+       		   B.SAVE_NM AS SAVE_NM,
+       		   B.ORGNL_NM AS ORGNL_NM
+	      FROM TRAINER_VIDEO A, ATCH_FILE_DETAIL B
+ 		 WHERE A.ATCH_ID = B.ATCH_ID
+ 		   AND A.TRAINER_ID = #trainerId#
+   		 ORDER BY 3 DESC
+	</select>
+	
+	<update id="deleteVideo" parameterClass="trainervideoVO" >
+		UPDATE TRAINER_VIDEO
+		   SET TRAINER_ID = #trainerId#,
+		       DELETE_DT = SYSDATE
+		 WHERE CONTENT_NUM = #contentNum#
+	</update>
+	
+	<update id="updateVideo" parameterClass="trainervideoVO">
+		UPDATE TRAINER_VIDEO
+		   SET CONTENT = #content#,
+		   	   UPDATE_DT = SYSDATE,
+		   	   IP_ADD = #ipAdd#,
+		   	   ATCH_ID = #atchId#
+		 WHERE CONTENT_NUM = #contentNum#
+	</update>
+	
+</sqlMap>	

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="pay">
+
+
+<resultMap class="pay.vo.BuyerVO" id="buyerMap">
+<!-- 	<result property="rprtNum" column="RPRT_NUM" /> -->
+</resultMap>
+
+
+<!-- 결제 정보 DB 등록 -->
+<insert id="insertPay" parameterClass="payVO" >
+
+<!-- 	<selectKey keyProperty="payNum" resultClass="String"> -->
+<!-- 		SELECT SEQ_PAY.NEXTVAL FROM DUAL -->
+<!-- 	</selectKey> -->
+
+	insert into 
+	pay(
+		PAY_NUM,
+		PAY_DT,
+		EXPRT_DT,
+		MEM_ID,
+		CLIENT_ID,
+		TRAINER_ID,
+		PAY_METH_NUM,
+		PAY_AMOUNT
+	)
+	values(
+		SEQ_PAY.NEXTVAL,
+		sysdate,
+		sysdate + 30,
+		#memId#,
+		#clientId#,
+		#trainerId#,
+		#payMethNum#,
+		#payAmount#
+	)
+</insert> 
+
+<!-- 구매자 & 트레이너명 & 가격 정보  -->
+<select id="buyerInfo" resultClass="buyerVO">
+
+ SELECT A.MEM_ID,
+        A.MEM_NM,
+        A.EMAIL,
+        A.HP,
+        B.TRAINER_ID,
+        B.PRICE
+   FROM MEMBER A, TRAINER_CHNL B
+  WHERE A.MEM_ID = #memId#
+    and b.trainer_id = #trainerId#
+
+</select>
+
+
+<!-- 결제정보 조회 -->
+<select id="getPayInfo" parameterClass="String" resultClass="payVO">
+	
+	select * from pay
+	 where mem_id = #memId#
+     order by pay_dt desc
+
+</select>
+
+
+
+
+
+</sqlMap>

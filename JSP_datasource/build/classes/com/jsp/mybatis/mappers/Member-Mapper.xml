@@ -1,0 +1,56 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Member-Mapper">
+
+	<select id="selectMemberList" resultType="member">
+		select *
+		from member
+	</select>
+
+	<select id="selectMemberDetail" parameterType="str" resultType="member">
+		select *
+		from member
+		where
+		id = #{id}
+	</select>
+	
+	<update id="insertMember" parameterType="member">
+		INSERT INTO MEMBER
+		(	
+			ID
+			,NAME
+			,PWD
+			,EMAIL
+			,ADDRESS
+			,PHONE
+		)
+		VALUES
+		(
+			#{id}
+			,#{name}
+			,#{pwd}
+			,#{email}
+			,#{address}
+			,#{phone}
+		)
+	</update>
+	
+	<update id="updateMember" parameterType="member">
+		UPDATE MEMBER
+		SET
+			NAME     = #{name}
+			,PWD     = #{pwd}
+			,EMAIL   = #{email}
+			,ADDRESS = #{address}
+			,PHONE   = #{phone}
+		WHERE	
+			ID = #{id}
+	</update>
+	
+	<delete id="deleteMember" parameterType="str">
+		DELETE FROM MEMBER
+		WHERE	
+			ID = #{id}
+	</delete>
+</mapper>

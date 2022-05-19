@@ -1,0 +1,3212 @@
+* {
+	margin: 0;
+	/* 마진 리셋 */
+	padding: 0;
+	/* 패딩 리셋 */
+	box-sizing: border-box;
+	/* 박스 영역은 테두리까지 */
+}
+
+a {
+	text-decoration: none;
+	/* 텍스트 링크 밑줄 없애기 */
+}
+
+#wrap-container {
+	margin: 0 auto;
+	/* 화면 중앙에 배치 */
+	width: 1400px;
+	/* 너비 */
+	margin: auto;
+	background-color: #fff;
+}
+/*********************************/
+/* 헤더 영역 - 로고와 내비게이션 */
+/*********************************/
+header {
+	margin-top: 20px;
+	/* 헤더 위 띄우기 */
+	width: 100%;
+	/*  너비 */
+	height: 100px;
+	/* 높이 */
+	background-color: #045;
+}
+/* 로고 */
+#logo {
+	float: left;
+	/* 왼쪽으로 플로팅 */
+	width: 250px;
+	/*  너비 */
+	height: 100px;
+	/* 높이 */
+	line-height: 50px;
+	/* 세로로 중간에 맞춤 - 줄간격을 높이 값과 같게 */
+	padding-left: 20px;
+	/* 왼쪽에 여백 */
+}
+
+#logo h1 {
+	font-family: 'Merienda', cursive;
+	font-weight: 700;
+	font-size: 40px;
+	/* 글자 크기 */
+	color: #fff;
+	/* 글자 색*/
+	text-shadow: 0 -1px 0 #222;
+	/* 그림자 색 */
+}
+/* 내비게이션 */
+.nav1 {
+	float: right;
+	/* 오른쪽으로 플로팅 */
+	width: 300px;
+	/*   너비 */
+	padding-top: 0px;
+	/* 메뉴를 아래로 내리기 위해 */
+}
+
+#topMenu {
+	list-style: none;
+}
+
+#topMenu>li {
+	float: right;
+	/* 오른쪽으로 플로팅 */
+	position: static;
+}
+
+#topMenu>li>a {
+	display: block;
+	/* 링크 텍스트는 블록으로 */
+	font-size: 1.0em;
+	color: #fff;
+	/* 글자 색 */
+	font-weight: 600;
+	/* 글자 굵기 */
+	padding: 10px;
+	/* 패딩 */
+}
+
+#topMenu>li>p {
+	display: block;
+	/* 링크 텍스트는 블록으로 */
+	font-size: 1.0em;
+	color: #fff;
+	/* 글자 색 */
+	font-weight: 600;
+	/* 글자 굵기 */
+	padding: 10px;
+	/* 패딩 */
+}
+
+#topMenu>li>a:hover {
+	color: #1fa8f8;
+	text-shadow: 0 -2px #222;
+}
+
+.nav2 {
+	float: left;
+	width: 800px;
+	padding-top: 45px;
+	padding-left: 100px;
+}
+
+#BottomMenu {
+	list-style: none;
+}
+
+#bottomMenu>li {
+	float: left;
+	/* 메뉴 항목을 오른쪽으로 플로팅 */
+	position: relative;
+}
+
+#bottomMenu>li>a {
+	display: block;
+	/* 링크 텍스트는 블록으로 */
+	font-size: 1.4em;
+	color: rgb(255, 255, 255);
+	/* 글자 색 */
+	font-weight: 600;
+	/* 글자 굵기 */
+	padding: 20px 30px;
+	/* 패딩 */
+}
+
+#bottomMenuli {
+	font-size: 1.4em;
+	color: rgb(255, 255, 255);
+	/* 글자 색 */
+	font-weight: 600;
+	/* 글자 굵기 */
+	padding: 20px 30px;
+	/* 패딩 */
+}
+
+#bottomMenu>li>a:hover {
+	color: #f9fd13;
+	text-shadow: 0 -2px #222;
+}
+/*********************************/
+/* 컨테이너 영역 */
+/*********************************/
+#container {
+	margin: 0 auto;
+	/* 화면 중앙에 배치 */
+	width: 1400px;
+	/* 너비 */
+	margin: auto;
+	background-color: #fff;
+}
+
+.container {
+	margin-bottom: 15px;
+}
+
+.container::after {
+	content: "";
+	display: block;
+	clear: both;
+}
+/*********************************/
+/* 사이드 영역 */
+/*********************************/
+#left-sidebar {
+	clear: left;
+	/* 플로팅 해제 */
+	float: left;
+	width: 300px;
+	/* 사이드바의 너비 */
+	height: 750px;
+	/* 사이드바의 높이 */
+	background-color: #e9e9e9;
+	overflow: hidden;
+}
+
+#left-sidebar img {
+	float: left;
+	max-width: 100%;
+	height: 750px;
+	display: block;
+}
+
+#side2-li {
+	font-size: 25px;
+	margin-top: 30px;
+	margin-left: 100px;
+}
+
+#side3-li {
+	font-size: 18px;
+	margin-top: 30px;
+	margin-left: 120px;
+}
+
+#contents_mainhome {
+	float: left;
+	/* 왼쪽으로 플로팅 */
+	width: 1100px;
+	/* 본문의 너비 */
+	height: 750px;
+	/* 본문의 높이 */
+	background-color: #f7f7f7;
+}
+
+#footer {
+	clear: left;
+	/* 플로팅 해제 */
+	width: 100%;
+	/* 부모 요소의 너비와 똑같게  */
+	height: 30px;
+	/* 푸터의 높이 */
+	text-align: center;
+	padding-top: 4px;
+	background-color: #888888;
+}
+/*********************************/
+/* 메인 동영상 영역 */
+/*********************************/
+#videomain {
+	position: relative;
+	padding-left: 45px;
+	margin-left: 40px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 350px;
+}
+
+#video1 {
+	float: left;
+	width: 450px;
+	height: 250px;
+}
+
+#video2 {
+	float: left;
+	width: 450px;
+	height: 250px;
+}
+
+.video1 {
+	width: 400px;
+	height: 250px;
+}
+
+.video2 {
+	width: 400px;
+	height: 250px;
+}
+
+#bottom {
+	float: right;
+	padding-top: 50px;
+	margin-right: 30px;
+	bottom: 0;
+	font-size: 25px;
+	color: black;
+}
+/*********************************/
+/* 메인 게시판 영역 */
+/*********************************/
+#bordermain {
+	position: relative;
+	float: left;
+	margin-top: 20px;
+	margin-left: 40px;
+	width: 490px;
+	height: 380px;
+	border: 3px solid black;
+}
+
+#border img {
+	width: 400px;
+	height: 300px;
+	padding-top: 30px;
+}
+
+#bottom2 {
+	float: right;
+	padding-top: 30px;
+	margin-right: 30px;
+	bottom: 0;
+	font-size: 25px;
+	color: black;
+}
+/*********************************/
+/* 메인 스터디 영역 */
+/*********************************/
+#studymain {
+	position: relative;
+	float: left;
+	margin-top: 20px;
+	margin-left: 20px;
+	width: 490px;
+	height: 380px;
+	border: 3px solid black;
+}
+
+#study img {
+	width: 400px;
+	height: 300px;
+	padding-top: 30px;
+}
+
+#bottom3 {
+	float: right;
+	padding-top: 30px;
+	margin-right: 30px;
+	bottom: 0;
+	font-size: 25px;
+	color: black;
+}
+/*********************************/
+/* login.jsp css파일 */
+/*********************************/
+#contents_login {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+	text-align: center;
+	padding: 50px;
+}
+
+#h_login {
+	margin-top: 50px;
+}
+
+.login_box {
+	width: 500px;
+	margin: 40px auto;
+	margin-top: 50px;
+}
+
+#login {
+	list-style: none;
+}
+
+#login_uid {
+	text-align: center;
+	margin: 30px 20px auto;
+	width: 350px;
+	height: 50px;
+}
+
+#login_pwd {
+	text-align: center;
+	margin: 30px auto;
+	width: 350px;
+	height: 50px;
+}
+
+.login_buttons {
+	width: 200px;
+	height: 30px;
+}
+
+.forget_login>a {
+	margin-top: 20px;
+	color: black;
+}
+
+.forget_login>div>a {
+	margin-top: 20px;
+	color: black;
+}
+
+#button_login input:hover {
+	background-color: rgb(27, 134, 221);
+	color: #fff;
+	border-color: #fff;
+}
+/*********************************/
+/* membership.jsp css파일 */
+/*********************************/
+#contents_membership {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+	padding: 50px;
+}
+
+#h_membership {
+	text-align: center;
+}
+
+.membership_box {
+	width: 600px;
+	margin: 40px auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+#membership {
+	list-style: none;
+	padding-left: 0;
+}
+
+#memid {
+	text-align: center;
+	width: 200px;
+	height: 30px;
+}
+
+#mempw {
+	text-align: center;
+	width: 200px;
+	height: 30px;
+}
+
+#mempw2 {
+	text-align: center;
+	width: 200px;
+	height: 30px;
+}
+
+#memnm {
+	text-align: center;
+	width: 200px;
+	height: 30px;
+}
+
+#memday {
+	text-align: center;
+	width: 200px;
+	height: 30px;
+}
+
+#memmail {
+	text-align: center;
+	width: 200px;
+	height: 30px;
+}
+
+#memtel {
+	text-align: center;
+	width: 200px;
+	height: 30px;
+}
+
+#memaddr {
+	text-align: center;
+	width: 200px;
+	height: 30px;
+}
+
+#memadd1 {
+	text-align: center;
+	width: 300px;
+	height: 30px;
+}
+
+#memadd2 {
+	text-align: center;
+	width: 300px;
+	height: 30px;
+}
+
+#membership li {
+	margin: 20px;
+}
+
+#membership li label {
+	width: 120px;
+	line-height: 36px;
+	float: left;
+	text-align: left;
+	font-weight: bold;
+}
+
+#button_membership {
+	width: 400px;
+	margin: 20px auto;
+	text-align: center;
+}
+
+#button_membership input {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_membership input:hover {
+	background-color: rgb(27, 134, 221);
+	color: #fff;
+	border-color: #fff;
+}
+/*********************************/
+/* mypage.jsp css파일 */
+/*********************************/
+#contents_mypage {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+	padding: 60px;
+}
+
+#h1-mp {
+	margin-top: 30px;
+	font-size: 40px;
+	text-align: center;
+}
+
+#mypage_center {
+	margin: 20px auto;
+	width: 500px;
+	height: 300px;
+}
+
+#list-li {
+	list-style: none;
+	text-align: center;
+	font-size: 30px;
+	margin-top: 70px;
+}
+/*********************************/
+/* readmore.jsp css파일 */
+/*********************************/
+#contents_readmore {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+	padding: 50px;
+}
+
+.readmore_box {
+	width: 600px;
+	margin: 40px auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+#readmore {
+	list-style: none;
+	padding-left: 0;
+}
+
+#readmoreedit {
+	font-size: 25px;
+	font-weight: bold;
+	text-align: center;
+}
+
+#readmore li {
+	margin: 20px;
+}
+
+#readmore li label {
+	width: 120px;
+	line-height: 36px;
+	float: left;
+	text-align: left;
+	font-weight: bold;
+}
+
+#button_readmore {
+	width: 400px;
+	margin: 20px auto;
+	text-align: center;
+}
+
+#button_readmore input {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_readmore button {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_readmore input:hover {
+	background-color: rgb(27, 134, 221);
+	color: #fff;
+	border-color: #fff;
+}
+/*********************************/
+/* secession.jsp css파일 */
+/*********************************/
+#contents_secession {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+	padding: 50px;
+}
+
+#secession_center {
+	width: 600px;
+	margin: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	text-align: center;
+	font-size: 25px;
+}
+
+#button_secession {
+	width: 400px;
+	margin: 20px auto;
+	text-align: center;
+}
+
+#button_secession input {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_secession button {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_secession input:hover {
+	background-color: rgb(27, 134, 221);
+	color: #fff;
+	border-color: #fff;
+}
+/*********************************/
+/* bookdeal.jsp css파일 */
+/*********************************/
+#contents_bookdeal {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+}
+
+#buybook {
+	float: left;
+	padding-left: 45px;
+	padding-right: 30px;
+	margin-left: 40px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 340px;
+}
+
+#salebook {
+	float: left;
+	padding-left: 45px;
+	padding-right: 30px;
+	margin-left: 40px;
+	margin-top: 20px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 340px;
+}
+
+#book1, #book2 {
+	width: 900px;
+	height: 290px;
+	overflow: hidden;
+}
+
+#book1>p {
+	margin-top: 20px;
+}
+
+#book2>p {
+	margin-top: 20px;
+}
+
+#bookbottom {
+	float: right;
+	padding-top: 0px;
+	/*         margin-right: 30px; */
+	bottom: 0;
+	font-size: 25px;
+	color: black;
+}
+
+#bookbottom2 {
+	float: right;
+	padding-top: 0px;
+	/*         margin-right: 30px; */
+	bottom: 0;
+	font-size: 25px;
+	color: black;
+}
+/*********************************/
+/* buybook.jsp css파일 */
+/*********************************/
+#contents_buybook {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+}
+
+#buybook_center {
+	float: left;
+	margin-left: 40px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 680px;
+	text-align: center;
+}
+
+#button_buybook {
+	float: left;
+	width: 1000px;
+	margin: 10px auto;
+	padding-left: 90px;
+	text-align: center;
+}
+
+#button_buybook input {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_buybook button {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_buybook input:hover {
+	background-color: rgb(27, 134, 221);
+	color: #fff;
+	border-color: #fff;
+}
+/*********************************/
+/* salebook.jsp css파일 */
+/*********************************/
+#contents_salebook {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+}
+
+#salebook_center {
+	float: left;
+	margin-left: 40px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 680px;
+	text-align: center;
+}
+
+#button_salebook {
+	float: left;
+	width: 1000px;
+	margin: 10px auto;
+	padding-left: 90px;
+	text-align: center;
+}
+
+#button_salebook input {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_salebook button {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_salebook input:hover {
+	background-color: rgb(27, 134, 221);
+	color: #fff;
+	border-color: #fff;
+}
+/*********************************/
+/* lecture.jsp css파일 */
+/*********************************/
+#contents_lecture {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+	padding: 60px;
+}
+
+#lecture_center {
+	margin: 20px auto;
+	width: 500px;
+	height: 300px;
+}
+
+#list-li {
+	list-style: none;
+	text-align: center;
+	font-size: 30px;
+	margin-top: 70px;
+}
+/*********************************/
+/* lecturetop.jsp css파일 */
+/*********************************/
+#contents_lecturetop {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+}
+
+#lecturetop_center {
+	float: left;
+	margin-left: 40px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 680px;
+	text-align: center;
+}
+
+#button_lecturetop {
+	float: left;
+	width: 1000px;
+	margin: 10px auto;
+	padding-left: 90px;
+	text-align: center;
+}
+
+#button_lecturetop input {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_lecturetop button {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_lecturetop input:hover {
+	background-color: rgb(27, 134, 221);
+	color: #fff;
+	border-color: #fff;
+}
+/*********************************/
+/* lecturebuy.jsp css파일 */
+/*********************************/
+#contents_lecturebuy {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+}
+
+#lecturebuy_center {
+	float: left;
+	margin-left: 40px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 680px;
+	text-align: center;
+}
+
+#button_lecturebuy {
+	float: left;
+	width: 1000px;
+	margin: 10px auto;
+	padding-left: 90px;
+	text-align: center;
+}
+
+#button_lecturebuy input {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_lecturebuy button {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_lecturebuy input:hover {
+	background-color: rgb(27, 134, 221);
+	color: #fff;
+	border-color: #fff;
+}
+/*********************************/
+/* lecturereview.jsp css파일 */
+/*********************************/
+#contents_lecturereview {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+}
+
+#userreview {
+	float: left;
+	padding-left: 45px;
+	margin-left: 40px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 320px;
+}
+
+#myreview {
+	float: left;
+	padding-left: 45px;
+	margin-left: 40px;
+	margin-top: 20px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 320px;
+}
+
+#review1>p {
+	margin-top: 20px;
+}
+
+#review2>p {
+	margin-top: 20px;
+}
+
+#reviewbottom {
+	float: right;
+	padding-top: 220px;
+	margin-right: 30px;
+	bottom: 0;
+	font-size: 25px;
+	color: black;
+}
+
+#reviewbottom2 {
+	float: right;
+	padding-top: 220px;
+	margin-right: 30px;
+	bottom: 0;
+	font-size: 25px;
+	color: black;
+}
+
+#button_lecturereview {
+	float: left;
+	width: 1000px;
+	margin: 10px auto;
+	padding-left: 90px;
+	text-align: center;
+}
+
+#button_lecturereview input {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_lecturereview button {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_lecturereview input:hover {
+	background-color: rgb(27, 134, 221);
+	color: #fff;
+	border-color: #fff;
+}
+/*********************************/
+/* userreview.jsp css파일 */
+/*********************************/
+#cotents_userreview {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+}
+
+#userreview_center {
+	float: left;
+	margin-left: 40px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 680px;
+	text-align: center;
+}
+
+#button_userreview {
+	float: left;
+	width: 1000px;
+	margin: 10px auto;
+	padding-left: 90px;
+	text-align: center;
+}
+
+#button_userreview input {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_userreview button {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_userreview input:hover {
+	background-color: rgb(27, 134, 221);
+	color: #fff;
+	border-color: #fff;
+}
+/*********************************/
+/* myreview.jsp css파일 */
+/*********************************/
+#cotents_myreview {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+}
+
+#myreview_center {
+	float: left;
+	margin-left: 40px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 680px;
+	text-align: center;
+}
+
+#button_myreview {
+	float: left;
+	width: 1000px;
+	margin: 10px auto;
+	padding-left: 90px;
+	text-align: center;
+}
+
+#button_myreview input {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_myreview button {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_myreview input:hover {
+	background-color: rgb(27, 134, 221);
+	color: #fff;
+	border-color: #fff;
+}
+/*********************************/
+/* refund.jsp css파일 */
+/*********************************/
+#contents_refund {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+}
+
+#refundbook {
+	float: left;
+	padding-left: 45px;
+	margin-left: 40px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 340px;
+}
+
+#refundlecture {
+	float: left;
+	padding-left: 45px;
+	margin-left: 40px;
+	margin-top: 20px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 340px;
+}
+
+#refund1>p {
+	margin-top: 20px;
+}
+
+#refund2>p {
+	margin-top: 20px;
+}
+
+#refundbottom {
+	float: right;
+	padding-top: 250px;
+	margin-right: 30px;
+	bottom: 0;
+	font-size: 25px;
+	color: black;
+}
+
+#refundbottom2 {
+	float: right;
+	padding-top: 250px;
+	margin-right: 30px;
+	bottom: 0;
+	font-size: 25px;
+	color: black;
+}
+/*********************************/
+/* basket.jsp css파일 */
+/*********************************/
+#contents_basket {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+}
+
+#basketbook {
+	float: left;
+	padding-left: 45px;
+	margin-left: 40px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 350px;
+}
+
+#basketlecture {
+	float: left;
+	padding-left: 45px;
+	margin-top: 20px;
+	margin-left: 40px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 350px;
+}
+
+#basket1>p {
+	margin-top: 20px;
+}
+
+#basket2>p {
+	margin-top: 20px;
+}
+
+#basketbottom {
+	float: right;
+	padding-top: 250px;
+	margin-right: 30px;
+	bottom: 0;
+	font-size: 25px;
+	color: black;
+}
+
+#basketbottom2 {
+	float: right;
+	padding-top: 250px;
+	margin-right: 30px;
+	bottom: 0;
+	font-size: 25px;
+	color: black;
+}
+/*********************************/
+/* basketbook.jsp css파일 */
+/*********************************/
+#cotents_basketbook {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+}
+
+#basketbook_center {
+	float: left;
+	margin-left: 40px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 680px;
+	text-align: center;
+}
+
+#button_basketbook {
+	float: left;
+	width: 1000px;
+	margin: 10px auto;
+	padding-left: 90px;
+	text-align: center;
+}
+
+#button_basketbook input {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_basketbook button {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_basketbook input:hover {
+	background-color: rgb(27, 134, 221);
+	color: #fff;
+	border-color: #fff;
+}
+/*********************************/
+/* basketlecture.jsp css파일 */
+/*********************************/
+#cotents_basketlecture {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+}
+
+#basketlecture_center {
+	float: left;
+	margin-left: 40px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 680px;
+	text-align: center;
+}
+
+#button_basketlecture {
+	float: left;
+	width: 1000px;
+	margin: 10px auto;
+	padding-left: 90px;
+	text-align: center;
+}
+
+#button_basketlecture input {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_basketlecture button {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_basketlecture input:hover {
+	background-color: rgb(27, 134, 221);
+	color: #fff;
+	border-color: #fff;
+}
+/*********************************/
+/* point.jsp css파일 */
+/*********************************/
+#contents_point {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+}
+
+#pointsite {
+	float: left;
+	padding-left: 45px;
+	padding-right: 45px;
+	margin-left: 40px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 350px;
+}
+
+#pointactivity {
+	float: left;
+	padding-left: 45px;
+	padding-right: 45px;
+	margin-top: 20px;
+	margin-left: 40px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 350px;
+}
+
+#point1>p {
+	margin-top: 20px;
+}
+
+#point1, #point2 {
+	position: relative;
+	/*         display: inline-block; */
+	margin-top: 20px;
+	width: 900px;
+	height: 280px;
+	overflow: hidden;
+}
+
+#pointbottom {
+	float: right;
+	padding-top: 0px;
+	/*         margin-right: 30px; */
+	bottom: 0;
+	font-size: 25px;
+	color: black;
+}
+
+#pointbottom2 {
+	float: right;
+	padding-top: 0px;
+	/*         margin-right: 30px; */
+	bottom: 0;
+	font-size: 25px;
+	color: black;
+}
+
+/* ****************** */
+/* 마우스오버point */
+/* ****************** */
+.mouseover {
+	margin-top: -32px;
+	margin-left: 85px;
+	top: -2px;
+	right: -25px;
+	text-align: center;
+	background-color: #BCDBEA;
+	border-radius: 50%;
+	width: 24px;
+	height: 24px;
+	font-size: 14px;
+	line-height: 26px;
+	cursor: default;
+}
+
+.mouseover:before {
+	content: '?';
+	font-weight: bold;
+	color: #fff;
+}
+
+.mouseover:hover p {
+	display: block;
+	transform-origin: 100% 0%;
+	-webkit-animation: fadeIn 0.3s ease-in-out;
+	animation: fadeIn 0.3s ease-in-out;
+}
+
+.mouseover p {
+	display: none;
+	text-align: left;
+	background-color: #1E2021;
+	padding: 20px;
+	width: 300px;
+	position: absolute;
+	border-radius: 3px;
+	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+	left: 80px;
+	color: #FFF;
+	font-size: 13px;
+	line-height: 1.4;
+}
+
+.mouseover p:before {
+	position: absolute;
+	content: '';
+	width: 0;
+	height: 0;
+	border: 6px solid transparent;
+	border-bottom-color: #1E2021;
+	left: 10px;
+	top: -12px;
+}
+
+.mouseover p:after {
+	width: 100%;
+	height: 40px;
+	content: '';
+	position: absolute;
+	top: -40px;
+	left: 0;
+}
+
+/*********************************/
+/* pointsite.jsp css파일 */
+/*********************************/
+#cotents_pointsite {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+}
+
+#pointsite_center {
+	float: left;
+	margin-left: 40px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 680px;
+	text-align: center;
+}
+
+#button_pointsite {
+	float: left;
+	width: 1000px;
+	margin: 10px auto;
+	padding-left: 90px;
+	text-align: center;
+}
+
+#button_pointsite input {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_pointsite button {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_pointsite input:hover {
+	background-color: rgb(27, 134, 221);
+	color: #fff;
+	border-color: #fff;
+}
+/*********************************/
+/* pointactivity.jsp css파일 */
+/*********************************/
+#cotents_pointactivity {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+}
+
+#pointactivity_center {
+	float: left;
+	margin-left: 40px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 680px;
+	text-align: center;
+}
+
+#button_pointactivity {
+	float: left;
+	width: 1000px;
+	margin: 10px auto;
+	padding-left: 90px;
+	text-align: center;
+}
+
+#button_pointactivity input {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_pointactivity button {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_pointactivity input:hover {
+	background-color: rgb(27, 134, 221);
+	color: #fff;
+	border-color: #fff;
+}
+/*********************************/
+/* pointhistory.jsp css파일 */
+/*********************************/
+#cotents_pointhistory {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+}
+
+#pointhistory_center {
+	float: left;
+	margin-left: 40px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 680px;
+	text-align: center;
+}
+
+#button_pointhistory {
+	float: left;
+	width: 1000px;
+	margin: 10px auto;
+	padding-left: 90px;
+	text-align: center;
+}
+
+#button_pointhistory input {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_pointhistory button {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_pointhistory input:hover {
+	background-color: rgb(27, 134, 221);
+	color: #fff;
+	border-color: #fff;
+}
+/*********************************/
+/* webpointhistory.jsp css파일 */
+/*********************************/
+#cotents_webpointhistory {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+}
+
+#webpointhistory_center {
+	float: left;
+	margin-left: 40px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 680px;
+	text-align: center;
+}
+
+#button_webpointhistory {
+	float: left;
+	width: 1000px;
+	margin: 10px auto;
+	padding-left: 90px;
+	text-align: center;
+}
+
+#button_webpointhistory input {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_webpointhistory button {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_webpointhistory input:hover {
+	background-color: rgb(27, 134, 221);
+	color: #fff;
+	border-color: #fff;
+}
+/*********************************/
+/* lecturesignup.jsp css파일 */
+/*********************************/
+#contents_lecturesignup {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+}
+
+#lecturesignup_center {
+	float: left;
+	margin-left: 40px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 680px;
+	text-align: center;
+}
+
+#button_lecturesignup {
+	float: left;
+	width: 1000px;
+	margin: 10px auto;
+	padding-left: 90px;
+	text-align: center;
+}
+
+#button_lecturesignup input {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_lecturesignup button {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_lecturesignup input:hover {
+	background-color: rgb(27, 134, 221);
+	color: #fff;
+	border-color: #fff;
+}
+
+.lecturesignup_box {
+	width: 600px;
+	margin: 40px auto;
+	margin-top: 60px;
+	margin-bottom: 20px;
+}
+
+#lecturesignup1 {
+	margin-top: 30px;
+	font-size: 25px;
+	font-weight: bold;
+}
+
+#lecturesignupul {
+	list-style: none;
+	padding-left: 10px;
+}
+
+#singupselect {
+	text-align: center;
+	width: 200px;
+	height: 30px;
+}
+
+#singupexplanation{
+	text-align: center;
+	resize: vertical;
+	width: 200px;
+	height: 30px
+}
+
+#singupname {
+	text-align: center;
+	width: 200px;
+	height: 30px;
+}
+
+#signupnumber {
+	text-align: center;
+	width: 200px;
+	height: 30px;
+}
+
+#signupbook {
+	text-align: center;
+	width: 200px;
+	height: 30px;
+}
+
+#singuphow {
+	text-align: center;
+	width: 185px;
+	height: 30px;
+}
+
+#lecturesignupul li {
+	margin: 50px;
+}
+
+#lecturesignupul li label {
+	width: 100px;
+	line-height: 30px;
+	float: left;
+	text-align: left;
+	font-weight: bold;
+}
+/*********************************/
+/* lecturebuymenu.jsp css파일 */
+/*********************************/
+#contents_lecturebuymenu {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+}
+
+#lecturebuymenu_center {
+	float: left;
+	margin-left: 40px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 680px;
+	text-align: center;
+}
+
+#lecturebuymenu1 {
+	font-size: 25px;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 20px;
+}
+
+#button_lecturebuymenu {
+	float: left;
+	width: 1000px;
+	margin: 10px auto;
+	padding-left: 90px;
+	text-align: center;
+}
+
+#button_lecturebuymenu input {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_lecturebuymenu input:hover {
+	background-color: rgb(27, 134, 221);
+	color: #fff;
+	border-color: #fff;
+}
+
+#videoselect {
+	margin-top: 15px;
+	text-align: center;
+	width: 200px;
+	height: 30px;
+}
+
+#lecturebuymenu {
+	list-style: none;
+	margin-left: 20px;
+}
+
+#buymenusearchlabel {
+	margin-left: 20px;
+}
+
+#lecturebuymenudiv2 {
+	margin-top: 20px;
+	font-size:35px;
+	font-weight: bold;
+	
+}
+
+#lecturebuymenudiv3, #lecturebuymenudiv4, #lecturebuymenudiv5,
+	#lecturebuymenudiv6, #lecturebuymenudiv7 {
+	margin-top: 20px;
+}
+
+#buymenusearch {
+	text-align: center;
+	width: 450px;
+	height: 30px;
+}
+
+#listselect {
+	width: 200px;
+	height: 30px;
+}
+/*********************************/
+/* lecturebuyselect.jsp css파일 */
+/*********************************/
+#contents_lecturebuyselect {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+}
+
+#lecturebuyselect_center {
+	float: left;
+	margin-left: 40px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 680px;
+	text-align: center;
+}
+
+#button_lecturebuyselect {
+	float: left;
+	width: 1000px;
+	margin: 10px auto;
+	padding-left: 90px;
+	text-align: center;
+}
+
+#button_lecturebuyselect input {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_lecturebuyselect button {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_lecturebuyselect input:hover {
+	background-color: rgb(27, 134, 221);
+	color: #fff;
+	border-color: #fff;
+}
+
+.lecturebuyselect_box {
+	width: 600px;
+	margin: 40px auto;
+	margin-top: 60px;
+	margin-bottom: 20px;
+}
+
+#lecturebuyselect1 {
+	margin-top: 30px;
+	font-size: 25px;
+	font-weight: bold;
+}
+
+#lecturebuyselectul {
+	list-style: none;
+	padding-left: 10px;
+}
+
+#selectname {
+	text-align: center;
+	width: 200px;
+	height: 30px;
+}
+
+#selectnumber {
+	text-align: center;
+	width: 200px;
+	height: 30px;
+}
+
+#signupbook {
+	text-align: center;
+	width: 200px;
+	height: 30px;
+}
+
+#selectbook {
+	text-align: center;
+	width: 200px;
+	height: 30px;
+}
+
+#selecthow {
+	text-align: center;
+	width: 185px;
+	height: 30px;
+}
+
+#selectmoney {
+	text-align: center;
+	width: 185px;
+	height: 30px;
+}
+
+#lecturebuyselectul li {
+	margin: 50px;
+}
+
+#lecturebuyselectul li label {
+	width: 100px;
+	line-height: 30px;
+	float: left;
+	text-align: left;
+	font-weight: bold;
+}
+/*********************************/
+/* lecturestudy.jsp css파일 */
+/*********************************/
+#cotents_lecturestudy {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+}
+
+#lecturestudy_center {
+	float: left;
+	margin-left: 40px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 680px;
+	text-align: center;
+}
+
+#button_lecturestudy {
+	float: left;
+	width: 1000px;
+	margin: 10px auto;
+	padding-left: 90px;
+	text-align: center;
+}
+
+#button_lecturestudy input {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_lecturestudy button {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_lecturestudy input:hover {
+	background-color: rgb(27, 134, 221);
+	color: #fff;
+	border-color: #fff;
+}
+/*********************************/
+/* booksale.jsp css파일 */
+/*********************************/
+#contents_booksale {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+}
+
+#booksale_center {
+	float: left;
+	margin-left: 40px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 680px;
+	text-align: center;
+}
+
+#button_booksale {
+	float: left;
+	width: 1000px;
+	margin: 10px auto;
+	padding-left: 90px;
+	text-align: center;
+}
+
+#button_booksale input {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_booksale button {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_booksale input:hover {
+	background-color: rgb(27, 134, 221);
+	color: #fff;
+	border-color: #fff;
+}
+
+#booksale {
+	font-size: 25px;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 20px;
+}
+
+#booksale2 {
+	font-size: 40px;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 40px;
+}
+
+#booksale3 {
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 30px;
+}
+
+.booksale_box {
+	width: 600px;
+	margin: 40px auto;
+	margin-top: 60px;
+	margin-bottom: 20px;
+	z-index: 2;
+}
+
+#booksale1 {
+	margin-top: 30px;
+	font-size: 25px;
+	font-weight: bold;
+}
+
+#booksaleul {
+	list-style: none;
+	padding-left: 10px;
+}
+
+#bookname {
+	text-align: center;
+	width: 200px;
+	height: 30px;
+}
+
+#bookselect {
+	text-align: center;
+	width: 200px;
+	height: 30px;
+}
+
+#booksaleul li {
+	margin: 50px;
+}
+
+#booksaleul li label {
+	width: 100px;
+	line-height: 30px;
+	float: left;
+	text-align: left;
+	font-weight: bold;
+}
+
+/* ****************** */
+/* 마우스오버booksale */
+/* ****************** */
+#mouse1 {
+	margin-top: 20px;
+}
+
+/* 마우스오버버튼 */
+.mouseover1 {
+	margin-top: -21px;
+	margin-left: 535px;
+	top: -2px;
+	right: -25px;
+	text-align: center;
+	background-color: #BCDBEA;
+	border-radius: 50%;
+	width: 24px;
+	height: 24px;
+	font-size: 14px;
+	line-height: 26px;
+	cursor: default;
+}
+
+.mouseover1:before {
+	content: '?';
+	font-weight: bold;
+	color: #fff;
+}
+
+.mouseover1:hover p {
+	display: block;
+	transform-origin: 100% 0%;
+	-webkit-animation: fadeIn 0.3s ease-in-out;
+	animation: fadeIn 0.3s ease-in-out;
+}
+
+/* 마우스오버시 텍스트창 */
+.mouseover1 p {
+	display: none;
+	text-align: left;
+	background-color: #1E2021;
+	padding: 10px;
+	width: 380px;
+	position: relative;
+	z-index: 1;
+	border-radius: 10px;
+	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+	left: -10px;
+	color: #FFF;
+	font-size: 13px;
+	line-height: 1.4;
+}
+
+/* 마우스오버창 화살표 */
+.mouseover1 p:before {
+	position: absolute;
+	content: ' ';
+	width: 0;
+	height: 0;
+	border: 10px solid transparent;
+	border-bottom-color: #1E2021;
+	left: 12px;
+	top: -15px;
+}
+
+.mouseover1 p:after {
+	width: 100%;
+	height: 40px;
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+/*********************************/
+/* bookbuy.jsp css파일 */
+/*********************************/
+#contents_bookbuy {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+}
+
+#bookbuy_center {
+	float: left;
+	margin-left: 40px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 680px;
+	text-align: center;
+}
+
+#button_bookbuy {
+	float: left;
+	width: 1000px;
+	margin: 10px auto;
+	padding-left: 90px;
+	text-align: center;
+}
+
+#button_bookbuy input {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_bookbuy button {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_bookbuy input:hover {
+	background-color: rgb(27, 134, 221);
+	color: #fff;
+	border-color: #fff;
+}
+
+#bookbuy {
+	font-size: 25px;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 20px;
+}
+
+#bookbuy2 {
+	font-size: 40px;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 40px;
+}
+
+#bookbuy3 {
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 30px;
+}
+
+.bookbuy_box {
+	width: 600px;
+	margin: 40px auto;
+	margin-top: 60px;
+	margin-bottom: 20px;
+	z-index: 2;
+}
+
+#bookbuy1 {
+	margin-top: 30px;
+	font-size: 25px;
+	font-weight: bold;
+}
+
+#bookbuyul {
+	list-style: none;
+	padding-left: 10px;
+}
+
+#bookname {
+	text-align: center;
+	width: 200px;
+	height: 30px;
+}
+
+#bookselect {
+	text-align: center;
+	width: 200px;
+	height: 30px;
+}
+
+#bookhow {
+	text-align: center;
+	width: 185px;
+	height: 30px;
+}
+
+#bookbuyul li {
+	margin: 50px;
+}
+
+#bookbuyul li label {
+	width: 100px;
+	line-height: 30px;
+	float: left;
+	text-align: left;
+	font-weight: bold;
+}
+
+/* ****************** */
+/* 마우스오버booksale */
+/* ****************** */
+#mouse2 {
+	margin-top: 20px;
+}
+
+/* 마우스오버버튼 */
+.mouseover2 {
+	margin-top: -21px;
+	margin-left: 535px;
+	top: -2px;
+	right: -25px;
+	text-align: center;
+	background-color: #BCDBEA;
+	border-radius: 50%;
+	width: 24px;
+	height: 24px;
+	font-size: 14px;
+	line-height: 26px;
+	cursor: default;
+}
+
+.mouseover2:before {
+	content: '?';
+	font-weight: bold;
+	color: #fff;
+}
+
+.mouseover2:hover p {
+	display: block;
+	transform-origin: 100% 0%;
+	-webkit-animation: fadeIn 0.3s ease-in-out;
+	animation: fadeIn 0.3s ease-in-out;
+}
+
+/* 마우스오버시 텍스트창 */
+.mouseover2 p {
+	display: none;
+	text-align: left;
+	background-color: #1E2021;
+	padding: 10px;
+	width: 380px;
+	position: relative;
+	z-index: 1;
+	border-radius: 10px;
+	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+	left: -10px;
+	color: #FFF;
+	font-size: 13px;
+	line-height: 1.4;
+}
+
+/* 마우스오버창 화살표 */
+.mouseover2 p:before {
+	position: absolute;
+	content: ' ';
+	width: 0;
+	height: 0;
+	border: 10px solid transparent;
+	border-bottom-color: #1E2021;
+	left: 12px;
+	top: -15px;
+}
+
+.mouseover2 p:after {
+	width: 100%;
+	height: 40px;
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+/*********************************/
+/* freeboard.jsp css파일 */
+/*********************************/
+#contents_freeboard {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+}
+
+#freeboard_center {
+	float: left;
+	margin-left: 40px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 680px;
+}
+
+#freeboard {
+	padding-left: 20px;
+	padding-top: 20px;
+	width: 980px;
+	font-size: 35px;
+	font-weight: bold;
+}
+
+#boardsearch {
+	float: right;
+	margin-top: 10px;
+	margin-right: 5px;
+	text-align: center;
+	width: 300px;
+	height: 30px;
+}
+
+#freeboard_buttons {
+	float: right;
+	margin-top: 11px;
+	margin-right: 20px;
+	width: 80px;
+	height: 26px;
+}
+
+#freeboard1 {
+	padding-right: 20px;
+	margin-top: 15px;
+	margin: 20px auto;
+	height: 530px;
+ 	overflow: scroll;
+}
+
+#freeboard2 {
+	padding-right: 20px;
+	text-align: right;
+	margin-top: 15px;
+	margin: 20px auto;
+}
+
+/* #freeboard2button {
+	width: 100px;
+	height: 30px;
+} */
+
+#button_freeboard {
+	float: left;
+	width: 1000px;
+	margin: 10px auto;
+	padding-left: 90px;
+	text-align: center;
+}
+
+#button_freeboard input {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_freeboard button {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_freeboard input:hover {
+	background-color: rgb(27, 134, 221);
+	color: #fff;
+	border-color: #fff;
+}
+
+/*********************************/
+/* qaboard.jsp css파일 */
+/*********************************/
+#contents_qaboard {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+}
+
+#qaboard_center {
+	float: left;
+	margin-left: 40px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 680px;
+}
+
+#qaboard {
+	padding-left: 20px;
+	padding-top: 20px;
+	width: 980px;
+	font-size: 35px;
+	font-weight: bold;
+}
+
+#qaboardsearch {
+	float: right;
+	margin-top: 10px;
+	margin-right: 5px;
+	text-align: center;
+	width: 300px;
+	height: 30px;
+}
+
+#qaboard_buttons {
+	float: right;
+	margin-top: 11px;
+	margin-right: 20px;
+	width: 80px;
+	height: 26px;
+}
+
+#qaboard1 {
+	margin-top: 15px;
+	margin: 20px auto;
+	width: 800px;
+	height: 500px;
+	border: 1px solid black;
+	overflow: scroll;
+}
+
+#qaboard2 {
+	text-align: right;
+	margin-top: 15px;
+	margin: 20px auto;
+	width: 800px;
+}
+
+#button_qaboard {
+	float: left;
+	width: 1000px;
+	margin: 10px auto;
+	padding-left: 90px;
+	text-align: center;
+}
+
+#button_qaboard input {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_qaboard button {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_qaboard input:hover {
+	background-color: rgb(27, 134, 221);
+	color: #fff;
+	border-color: #fff;
+}
+/*********************************/
+/* questionboard.jsp css파일 */
+/*********************************/
+#contents_questionboard {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+}
+
+#questionboard_center {
+	float: left;
+	margin-left: 40px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 680px;
+}
+
+#questionboardsearch {
+	float: right;
+	margin-top: 10px;
+	margin-right: 5px;
+	text-align: center;
+	width: 300px;
+	height: 30px;
+}
+
+#questionboard_buttons {
+	float: right;
+	margin-top: 11px;
+	margin-right: 20px;
+	width: 80px;
+	height: 26px;
+}
+
+#questionboard1 {
+	margin-top: 15px;
+	margin: 20px auto;
+	width: 800px;
+	height: 500px;
+	border: 1px solid black;
+	overflow: scroll;
+}
+
+#questionboard2 {
+	text-align: right;
+	margin-top: 15px;
+	margin: 20px auto;
+	width: 800px;
+}
+
+#button_questionboard {
+	float: left;
+	width: 1000px;
+	margin: 10px auto;
+	padding-left: 90px;
+	text-align: center;
+}
+
+#button_questionboard input {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_questionboard button {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_questionboard input:hover {
+	background-color: rgb(27, 134, 221);
+	color: #fff;
+	border-color: #fff;
+}
+/*********************************/
+/* studygroup.jsp css파일 */
+/*********************************/
+#contents_studygroup {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+}
+
+#studygroup_center {
+	float: left;
+	margin-left: 40px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 680px;
+}
+
+#studygroup {
+	margin: 20px auto;
+	width: 600px;
+	height: 500px;
+}
+
+#study1 {
+	font-size: 50px;
+	font-weight: bold;
+	margin-top: 30px;
+}
+
+#study2 {
+	font-size: 30px;
+	margin-top: 30px;
+}
+
+#button_studygroup {
+	float: left;
+	width: 1000px;
+	margin: 10px auto;
+	text-align: center;
+}
+
+#button_studygroup input {
+	width: 200px;
+	height: 40px;
+	font-size: 20px;
+}
+
+#button_studygroup button {
+	width: 200px;
+	height: 40px;
+	font-size: 20px;
+}
+
+#button_studygroup button:hover {
+	background-color: rgb(27, 134, 221);
+	color: #fff;
+	border-color: #fff;
+}
+/*********************************/
+/* studygroup.jsp css파일 */
+/*********************************/
+#contents_studyenrollment {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+}
+
+#studyenrollment_center {
+	float: left;
+	margin-left: 40px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 680px;
+}
+
+#studyenrollment {
+	margin: 20px auto;
+	width: 800px;
+	height: 500px;
+	border: 1px solid black;
+}
+
+#button_studyenrollment {
+	float: left;
+	width: 1000px;
+	margin: 10px auto;
+	text-align: center;
+	padding-left: 70px;
+}
+
+#button_studyenrollment button {
+	width: 200px;
+	height: 40px;
+	font-size: 20px;
+}
+
+#button_studyenrollment button:hover {
+	background-color: rgb(27, 134, 221);
+	color: #fff;
+	border-color: #fff;
+}
+/*********************************/
+/* studygroup.jsp css파일 */
+/*********************************/
+#contents_studymember {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+}
+
+#studymember_center {
+	float: left;
+	margin-left: 40px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 680px;
+}
+
+#studymember {
+	margin: 20px auto;
+	width: 800px;
+	height: 500px;
+	border: 1px solid black;
+}
+
+#button_studymember {
+	float: left;
+	width: 1000px;
+	margin: 10px auto;
+	text-align: center;
+	padding-left: 70px;
+}
+
+#button_studymember button {
+	width: 200px;
+	height: 40px;
+	font-size: 20px;
+}
+
+#button_studymember button:hover {
+	background-color: rgb(27, 134, 221);
+	color: #fff;
+	border-color: #fff;
+}
+/*********************************/
+/* managermain.jsp css파일 */
+/*********************************/
+#contents_managermain {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+}
+
+#managermain_center {
+	float: left;
+	margin-left: 40px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 680px;
+}
+
+#managermain {
+	margin: 20px auto;
+	width: 800px;
+	height: 600px;
+}
+
+#managermain>p {
+	font-size: 30px;
+	font-weight: bold;
+	padding-left: 40px;
+}
+
+#managermain_menu {
+	margin: 20px auto;
+	text-align: center;
+}
+
+#button_managermain button {
+	width: 300px;
+	height: 100px;
+	font-size: 20px;
+	margin-top: 50px;
+	text-align: center;
+}
+
+#button_managermain button:hover {
+	background-color: rgb(27, 134, 221);
+	color: #fff;
+	border-color: #fff;
+}
+/*********************************/
+/* memberlist.jsp css파일 */
+/*********************************/
+#contents_memberlist {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+}
+
+#memberlist_center {
+	float: left;
+	margin-left: 40px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 680px;
+}
+
+#memberlist {
+	margin: 20px auto;
+	width: 800px;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+#membersearch {
+	text-align: center;
+	width: 300px;
+	height: 30px;
+	margin-left: 175px;
+}
+
+#memberlist_buttons {
+	width: 100px;
+	height: 25px;
+}
+
+#memberlist1 {
+	margin-top: 15px;
+	margin: 20px auto;
+	width: 800px;
+	height: 500px;
+	border: 1px solid black;
+}
+
+#button_memberlist {
+	float: left;
+	width: 1000px;
+	margin: 10px auto;
+	padding-left: 90px;
+	text-align: center;
+}
+
+#button_memberlist input {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_memberlist button {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_memberlist input:hover {
+	background-color: rgb(27, 134, 221);
+	color: #fff;
+	border-color: #fff;
+}
+/*********************************/
+/* blacklist.jsp css파일 */
+/*********************************/
+#contents_blacklist {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+}
+
+#blacklist_center {
+	float: left;
+	margin-left: 40px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 680px;
+}
+
+#blacklist {
+	margin: 20px auto;
+	width: 800px;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+#blacksearch {
+	text-align: center;
+	width: 300px;
+	height: 30px;
+	margin-left: 175px;
+}
+
+#blacklist_buttons {
+	width: 100px;
+	height: 25px;
+}
+
+#blacklist1 {
+	margin-top: 15px;
+	margin: 20px auto;
+	width: 800px;
+	height: 500px;
+	border: 1px solid black;
+}
+
+#button_blacklist {
+	float: left;
+	width: 1000px;
+	margin: 10px auto;
+	padding-left: 90px;
+	text-align: center;
+}
+
+#button_blacklist input {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_blacklist button {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_blacklist input:hover {
+	background-color: rgb(27, 134, 221);
+	color: #fff;
+	border-color: #fff;
+}
+/*********************************/
+/* booklist.jsp css파일 */
+/*********************************/
+#contents_booklist {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+}
+
+#booklist_center {
+	float: left;
+	margin-left: 40px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 680px;
+}
+
+#booklist {
+	margin: 20px auto;
+	width: 800px;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+#booksearch {
+	text-align: center;
+	width: 300px;
+	height: 30px;
+	margin-left: 175px;
+}
+
+#booklist_buttons {
+	width: 100px;
+	height: 25px;
+}
+
+#booklist1_buttons {
+	width: 60px;
+	height: 25px;
+}
+
+#booklist1 {
+	margin-top: 15px;
+	margin: 20px auto;
+	width: 800px;
+	height: 500px;
+	border: 1px solid black;
+}
+
+#booklist2 {
+	text-align: right;
+	margin-right: 100px;
+}
+
+#button_booklist {
+	float: left;
+	width: 1000px;
+	margin: 10px auto;
+	padding-left: 90px;
+	text-align: center;
+}
+
+#button_booklist input {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_booklist button {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_booklist input:hover {
+	background-color: rgb(27, 134, 221);
+	color: #fff;
+	border-color: #fff;
+}
+/*********************************/
+/* firsttest.jsp css파일 */
+/*********************************/
+#contents_firsttest {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+}
+
+#firsttest_center {
+	float: left;
+	margin-left: 40px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 680px;
+}
+
+#firsttest {
+	margin: 20px auto;
+	width: 800px;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+#firsttest1 {
+	margin-top: 15px;
+	margin: 20px auto;
+	width: 800px;
+	height: 550px;
+	border: 1px solid black;
+}
+
+#button_firsttest {
+	float: left;
+	width: 1000px;
+	margin: 10px auto;
+	padding-left: 90px;
+	text-align: center;
+}
+
+#button_firsttest input {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_firsttest button {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_firsttest input:hover {
+	background-color: rgb(27, 134, 221);
+	color: #fff;
+	border-color: #fff;
+}
+/*********************************/
+/* salevideolist.jsp css파일 */
+/*********************************/
+#contents_salevideolist {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+}
+
+#salevideolist_center {
+	float: left;
+	margin-left: 40px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 680px;
+}
+
+#salevideolist {
+	margin: 20px auto;
+	width: 800px;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+#salevideosearch {
+	text-align: center;
+	width: 300px;
+	height: 30px;
+	margin-left: 175px;
+}
+
+#salevideolist_buttons {
+	width: 100px;
+	height: 25px;
+}
+
+#salevideolist1_buttons {
+	width: 60px;
+	height: 25px;
+}
+
+#salevideolist1 {
+	margin-top: 15px;
+	margin: 20px auto;
+	width: 800px;
+	height: 550px;
+	border: 1px solid black;
+}
+
+#button_salevideolist {
+	float: left;
+	width: 1000px;
+	margin: 10px auto;
+	padding-left: 90px;
+	text-align: center;
+}
+
+#button_salevideolist input {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_salevideolist button {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_salevideolist input:hover {
+	background-color: rgb(27, 134, 221);
+	color: #fff;
+	border-color: #fff;
+}
+/*********************************/
+/* category.jsp css파일 */
+/*********************************/
+#contents_category {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+}
+
+#category_center {
+	float: left;
+	margin-left: 40px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 680px;
+}
+
+#category {
+	margin: 20px auto;
+	width: 800px;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+#categorysearch {
+	text-align: center;
+	width: 300px;
+	height: 30px;
+	margin-left: 175px;
+}
+
+#category_buttons {
+	width: 100px;
+	height: 25px;
+}
+
+#category1_buttons {
+	width: 60px;
+	height: 25px;
+}
+
+#category1 {
+	margin-top: 15px;
+	margin: 20px auto;
+	width: 800px;
+	height: 550px;
+	border: 1px solid black;
+}
+
+#button_category {
+	float: left;
+	width: 1000px;
+	margin: 10px auto;
+	padding-left: 90px;
+	text-align: center;
+}
+
+#button_category input {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_category button {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_category input:hover {
+	background-color: rgb(27, 134, 221);
+	color: #fff;
+	border-color: #fff;
+}
+/*********************************/
+/* firsttest.jsp css파일 */
+/*********************************/
+#contents_salesstatus {
+	float: left;
+	width: 1100px;
+	height: 680px;
+	margin: 20px auto;
+}
+
+#salesstatus_center {
+	float: left;
+	margin-left: 40px;
+	border: 3px solid black;
+	width: 1000px;
+	height: 680px;
+}
+
+#salesstatus {
+	margin: 20px auto;
+	width: 800px;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+#salesstatus1 {
+	margin-top: 15px;
+	margin: 20px auto;
+	width: 800px;
+	height: 550px;
+	border: 1px solid black;
+}
+
+#button_salesstatus {
+	float: left;
+	width: 1000px;
+	margin: 10px auto;
+	padding-left: 90px;
+	text-align: center;
+}
+
+#button_salesstatus input {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_salesstatus button {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+}
+
+#button_salesstatus input:hover {
+	background-color: rgb(27, 134, 221);
+	color: #fff;
+	border-color: #fff;
+}

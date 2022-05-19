@@ -1,0 +1,242 @@
+/* COMMON */
+
+.flex{
+  display: flex;
+}
+
+.al-ti-ce{
+  align-items: center;
+}
+
+
+body {
+    color: #333;
+    font-size: 16px;
+    font-weight: 400;
+    /* 사용자들이 글자를 읽는데 불편하지 않은 글높이(다를 수 있음) */
+    line-height: 1.4; 
+    font-family: 'Nanum Gothic', sans-serif;
+    /* height: 3000px; */
+  }
+  
+  img {
+    /* 더이상 글자가 아니라, 하나의 상자, layout으로 취급하겠다는 뜻임  */
+    display: block;
+    max-width: 100%;
+  }
+  a {
+    text-decoration: none;
+  }
+  .inner {
+    width: 1100px;
+    /* 가운데 정렬 */
+    margin: 0 auto;
+    position: relative;
+  }
+  .btn.btn--reverse {
+    background-color: #333;
+    color: #FFF;
+  }
+  .btn.btn--reverse:hover {
+    background-color: transparent;
+    color: #333;
+  }
+  .btn.btn--brown {
+    color: #592B18;
+    border-color: #592B18;
+  }
+  .btn.btn--brown:hover {
+    color: #FFF;
+    background-color: #592B18;
+  }
+  .btn.btn--gold {
+    color: #D9AA8A;
+    border-color: #D9AA8A;
+  }
+  .btn.btn--gold:hover {
+    color: #FFF;
+    background-color: #D9AA8A;
+  }
+  .btn.btn--white {
+    color: #FFF;
+    border-color: #FFF;
+  }
+  .btn.btn--white:hover {
+    color: #333;
+    background-color: #FFF;
+  }
+  .btn {
+    width: 130px;
+    padding: 10px;
+    border: 2px solid #333;
+    border-radius: 4px;
+    color: #333;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+    box-sizing: border-box;
+    display: block;
+    transition: .4s;
+  }
+  .btn:hover {
+    background-color: #333;
+    color: #FFF;
+  }
+  
+  /* HEADER */
+  header {
+    width: 100%;
+    background-color: #fff;
+    border-bottom: 1px solid #c8c8c8;
+    /* fixed, absolute는 가로 넓이가 최소한으로 줄어들려고 시도함 */
+    position: fixed;
+    top: 0;
+    z-index: 10;
+  }
+  /* header의 자식 요소인 inner */
+  header > .inner {
+    height: 120px;
+    position: relative;
+  }
+  header .logo {
+    display: inline-block;
+    position: absolute;
+    top: 38px;
+  }
+  header .logo .main-logo{
+    
+  }
+  header .logo .sub-logo{
+    
+  }
+  .logo-main{
+  font-weight: 600;
+  color: #39312b;
+  position: absolute;
+  left: -3px;
+  bottom: -32px;
+}
+  /* header .sub-logo {
+    height: 52.99px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    color: #333;
+    text-decoration: none;
+} */
+
+header .main-menu {
+  position: absolute;
+  bottom: 0;
+  right: 337px;
+  z-index: 1;
+  display: flex;
+}
+header .main-menu .item {
+
+}
+header .main-menu .item .item__name {
+    padding: 10px 20px 34px 20px;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+}
+header .main-menu .item:hover .item__name {
+    color: #F96B06;
+    border-radius: 6px 6px 0 0;
+    cursor: pointer;
+}
+/* 트레이너 홈 */
+.main-intro{
+  margin-top: 120px;
+}
+.main-intro .inner{
+  display: flex;
+  height: 600px;
+  background-color: rgb(252, 251, 255);
+  position: relative;
+}
+.main-intro .inner .contents-text{
+  /*display: grid;*/
+  width: 60%;
+  display: flex;
+  align-items: center;
+}
+/* .main-intro .inner .contents .contents-text{
+  display: block;
+  min-width: 636.36px;
+} */
+.main-intro .inner .contents-text .intro-name{
+  /* display: inline-block; */
+  font-weight: bold;
+  font-size: 40px;
+  margin-bottom: 12px;
+}
+.main-intro .inner .contents-text .intro-sub{
+  display: inline-block;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.main-intro .inner .contents-text .intro-main{
+  display: inline-block;
+}
+.main-intro .inner .contents-pic{
+  display: grid;
+  width: 40%;
+  overflow: hidden;
+}
+
+/* start for trainer video */
+.video-container{
+  margin-top: 120px;
+}
+.video-container .inner{
+     
+}
+.video-container .inner .video-header{
+  display: flex; 
+  margin-bottom: 10px;
+}
+.video-container .inner .video-header p{
+}
+.video-container .inner .video-header p.date{
+  
+}
+.video-container .inner .video-header p.cnt-video{
+  position: absolute;
+  right: 0;
+}
+.video-container .inner .workout-week{
+  height: 250px;
+  /* align-items: center; */
+  background-color: #fafafa;
+  border-radius: 13px;
+  position: relative;
+}
+.video-container .inner .workout-week .days{
+  position: absolute;
+  right: 8px;
+  top: 61px;
+}
+.video-container .inner .workout-week .days .day{
+  position: relative;
+  background-color: #333;
+  display: inline-flex;
+  border-radius: 13px;
+}
+.video-container .inner .workout-week .day .day-video{
+  width: 213px;;
+  height: 126px;
+  /* background-color: #333;  */
+}
+.video-container .inner .workout-week .day p.day-text{
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  position: absolute;
+  right: -7px;
+  width: 100%;
+  bottom: -25px;
+}

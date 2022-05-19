@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="atchFile">
+	<resultMap class="common.vo.AtchFileVO" id="atchFileDetailMap">
+		<result property="atchId" column="ATCH_ID"/>
+		<result property="upldDt" column="UPLD_DT"/>
+		<result property="memId" column="MEM_ID"/>
+		<result property="fileSNum" column="FILE_SNUM"/>
+		<result property="filePath" column="FILE_PATH"/>
+		<result property="saveNm" column="SAVE_NM"/>
+		<result property="orgnlNm" column="ORGNL_NM"/>
+		<result property="fileExtsn" column="FILE_EXTNS"/>
+		<result property="fileContents" column="FILE_CONTENTS"/>
+		<result property="fileSize" column="FILE_SIZE"/>
+	</resultMap>
+	<insert id="insertAtchFile" parameterClass="atchFileVO">
+		<selectKey keyProperty="atchId" resultClass="String">		
+			SELECT SEQ_ATCH_FILE.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO ATCH_FILE
+		(ATCH_ID, UPLD_DT, MEM_ID)
+		VALUES
+		(#atchId#,SYSDATE,#memId#)
+	</insert>
+	
+	<insert id="insertAtchFileDetail" parameterClass="atchFileVO">
+		INSERT INTO ATCH_FILE_DETAIL
+		(ATCH_ID, FILE_SNUM, FILE_PATH, SAVE_NM, ORGNL_NM, FILE_EXTNS, FILE_CONTENTS, FILE_SIZE)
+		VALUES(#atchId#, (SELECT NVL(MAX(FILE_SNUM), 0) + 1
+		                    FROM ATCH_FILE_DETAIL
+		                   WHERE ATCH_ID = #atchId#),
+		       #filePath#, #saveNm#, #orgnlNm#, #fileExtsn#, #fileContents#, #fileSize#)
+	</insert>
+	
+	<select id="getAtchFileDetailList" parameterClass="common.vo.AtchFileVO" resultMap="atchFileDetailMap">
+		 SELECT *
+           FROM ATCH_FILE_DETAIL
+          WHERE ATCH_ID = (SELECT ATCH_ID
+                             FROM ATCH_FILE
+                            WHERE MEM_ID = #memId#)
+	</select>	
+
+</sqlMap>		
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="groupStudy">
+<!-- 
+	이 영역에 SQL문에 맞는 태그를 사용하여 SQL문을 작성한다.
+	
+	사용할 수 있는 기본적인 태그들
+	<select> ~~~ </select>
+	<insert> ~~~ </insert>
+	<update> ~~~ </update>
+	<delete> ~~~ </delete>
+	
+	위 태그에서 사용되는 속성들
+	
+	1) id속성 : 해당 태그를 호출할 때 <sqlMap>태그의 namespace와 연결하여 사용하는 이름.
+	2) parameterClass속성 : SQL문에 사용될 데이터가 들어있는 객체를 지정한다.(보통 VO클래스, 자바의 자료형이름 등이 사용된다.)
+						  (typeAlias로 지정한 alias명을 사용할 수 있다.
+	3) resultClass속성 : select문을 실행한 결과를 담을 객체를 지정한다. (보통 VO클래스나 자바의 자료형이름을 사용한다.)
+	4) resultMap속성 : 결과 레코드 컬럼명과 VO객체의 property명이 다를 경우에 적절한 매핑을 위해 사용한다.
+ -->
+ 
+ <!-- resultClass : 결과값을 넣을 객체
+ 	    VO의 변수명을 Alias로 달아 iBatis가 VO의 getter,setter를 호출할 수 있도록 -->
+ 	    
+ <!-- *를 사용해도 자동으로  db의 컬럼명과 VO의 변수명을 사용할 수 있도록 매칭 시키는 map -->
+ <resultMap id="groupStudyMap" class="groupStudyVO">
+ 	<result property="sgroupId" column="SGROUP_ID"/>
+ 	<result property="memId" column="MEM_ID"/>
+ 	<result property="sgroupTitle" column="SGROUP_TITLE"/>
+ 	<result property="sgroupContent" column="SGROUP_CONTENT"/>
+ 	<result property="sgroupTo" column="SGROUP_TO"/>
+ 	<result property="sgroupPlace" column="SGROUP_PLACE"/>
+ 	<result property="sgroupLatitude" column="SGROUP_LATITUDE"/>
+ 	<result property="sgroupLongitude" column="SGROUP_LONGITUDE"/>
+ 	<result property="sgroupSdate" column="SGROUP_SDATE"/>
+ 	<result property="sgroupEdate" column="SGROUP_EDATE"/>
+ </resultMap>
+ 
+ <select id="getGroupStudylist" resultMap="groupStudyMap">
+ 
+ 	SELECT SGROUP_ID
+          ,MEM_ID
+		  ,SGROUP_TITLE
+		  ,SGROUP_CONTENT
+		  ,SGROUP_TO
+		  ,SGROUP_PLACE
+		  ,SGROUP_LATITUDE
+		  ,SGROUP_LONGITUDE
+		  ,SGROUP_SDATE
+		  ,SGROUP_EDATE
+	  FROM STUDY_GROUP
+ 
+ </select>
+ 
+ <insert id="createGroupStudy" parameterClass="groupStudyVO">
+ 	
+ 	INSERT INTO
+ 	STUDY_GROUP(SGROUP_ID
+		       ,MEM_ID
+		       ,SGROUP_TITLE
+		       ,SGROUP_CONTENT
+		       ,SGROUP_TO
+		       ,SGROUP_PLACE
+		       ,SGROUP_LATITUDE
+		       ,SGROUP_LONGITUDE
+		       ,SGROUP_SDATE
+		       ,SGROUP_EDATE)
+		VALUES (#memId#
+			   ,#memId#
+			   ,#sgroupTitle#
+			   ,#sgroupContent#
+			   ,#sgroupTo#
+			   ,#sgroupPlace#
+			   ,#sgroupLatitude#
+			   ,#sgroupLongitude#
+			   ,#sgroupSdate#
+			   ,#sgroupEdate#
+			   )
+ 	
+ </insert>
+ 
+ <insert id="setStudyMember" parameterClass="groupStudyVO">
+ 	insert into SMember values(#memId#,'sgreader',sysdate,#memId#)
+ </insert>
+ 
+  <resultMap id="joinMap" class="joinVO">
+ 	<result property="sgroupId" column="SGROUP_ID"/>
+ 	<result property="memId" column="MEM_ID"/>
+ 	<result property="sgroupTitle" column="SGROUP_TITLE"/>
+ 	<result property="sgroupContent" column="SGROUP_CONTENT"/>
+ 	<result property="sgroupTo" column="SGROUP_TO"/>
+ 	<result property="sgroupPlace" column="SGROUP_PLACE"/>
+ 	<result property="sgroupLatitude" column="SGROUP_LATITUDE"/>
+ 	<result property="sgroupLongitude" column="SGROUP_LONGITUDE"/>
+ 	<result property="sgroupSdate" column="SGROUP_SDATE"/>
+ 	<result property="sgroupEdate" column="SGROUP_EDATE"/>
+ 	<result property="smemberStatusId" column="SMEMBER_STATUS_ID"/>
+ 	<result property="smemberDate" column="SMEMBER_DATE"/>
+ </resultMap>
+ 
+ <select id="getGroupStudyDetailInfo" resultMap="joinMap">
+ 
+	SELECT A.SGROUP_ID
+	      ,B.MEM_ID
+	      ,B.SMEMBER_STATUS_ID
+	      ,B.SMEMBER_DATE
+	      ,A.SGROUP_TITLE
+	      ,A.SGROUP_CONTENT
+	      ,A.SGROUP_TO
+	      ,A.SGROUP_PLACE
+	      ,A.SGROUP_LATITUDE
+	      ,A.SGROUP_LONGITUDE
+	      ,A.SGROUP_SDATE
+	      ,A.SGROUP_EDATE
+	  FROM STUDY_GROUP A, SMEMBER B
+	 WHERE A.SGROUP_ID = B.SGROUP_ID
+	   AND B.SMEMBER_STATUS_ID NOT IN ('wait')
+ 
+ </select>
+ 
+  <resultMap id="joinMap1" class="joinVO">
+ 	<result property="sgroupId" column="SGROUP_ID"/>
+ 	<result property="memId" column="MEM_ID"/>
+ 	<result property="sgroupTitle" column="SGROUP_TITLE"/>
+ 	<result property="sgroupContent" column="SGROUP_CONTENT"/>
+ 	<result property="sgroupTo" column="SGROUP_TO"/>
+ 	<result property="sgroupPlace" column="SGROUP_PLACE"/>
+ 	<result property="sgroupLatitude" column="SGROUP_LATITUDE"/>
+ 	<result property="sgroupLongitude" column="SGROUP_LONGITUDE"/>
+ 	<result property="sgroupSdate" column="SGROUP_SDATE"/>
+ 	<result property="sgroupEdate" column="SGROUP_EDATE"/>
+ 	<result property="smemberStatusId" column="SMEMBER_STATUS_ID"/>
+ 	<result property="smemberDate" column="SMEMBER_DATE"/>
+ </resultMap>
+ 
+ <select id="myGroupStudyDetailInfo" resultMap="joinMap1" parameterClass="String">
+ 
+	SELECT A.SGROUP_ID
+	      ,B.MEM_ID
+	      ,B.SMEMBER_STATUS_ID
+	      ,B.SMEMBER_DATE
+	      ,A.SGROUP_TITLE
+	      ,A.SGROUP_CONTENT
+	      ,A.SGROUP_TO
+	      ,A.SGROUP_PLACE
+	      ,A.SGROUP_LATITUDE
+	      ,A.SGROUP_LONGITUDE
+	      ,A.SGROUP_SDATE
+	      ,A.SGROUP_EDATE
+	  FROM STUDY_GROUP A, SMEMBER B
+	 WHERE A.SGROUP_ID = B.SGROUP_ID
+       AND A.MEM_ID = #memId#
+     ORDER BY SMEMBER_DATE
+ </select>
+ 
+ <resultMap id="groupMemMap" class="SMemberVO">
+ 	<result property="memId" column="MEM_ID"/>
+ 	<result property="smemberStatusId" column="SMEMBER_STATUS_ID"/>
+ 	<result property="smemberDate" column="SMEMBER_STATUS_ID"/>
+ 	<result property="sgroupId" column="SGROUP_ID"/>
+ </resultMap>
+ 
+ <select id="getMemberList" resultMap="groupMemMap" parameterClass="String">
+ 
+	SELECT MEM_ID
+	      ,SMEMBER_STATUS_ID
+	      ,SMEMBER_DATE
+	      ,SGROUP_ID
+	  FROM SMEMBER
+	 WHERE SGROUP_ID = #memId#
+	   AND SMEMBER_STATUS_ID NOT IN ('wait')
+ 
+ </select>
+
+ 
+ <select id="getGroupStudyDetailInfo2" resultMap="groupStudyMap" parameterClass="String">
+ 
+   SELECT SGROUP_ID
+   		 ,MEM_ID
+         ,SGROUP_TITLE
+         ,SGROUP_CONTENT
+         ,SGROUP_TO
+         ,SGROUP_PLACE
+         ,SGROUP_LATITUDE
+         ,SGROUP_LONGITUDE
+         ,SGROUP_SDATE
+         ,SGROUP_EDATE
+     FROM STUDY_GROUP
+	WHERE SGROUP_ID = #memId#
+ 
+ </select>
+ 
+  <insert id="joinGroupStudy" parameterClass="SMemberVO">
+ 	INSERT INTO SMember VALUES(#memId#,'wait',SYSDATE, #sgroupId#)
+ </insert>
+ 
+ <update id="smemberUpdate" parameterClass="sMemberVO">
+
+	 UPDATE SMEMBER
+        SET SMEMBER_STATUS_ID = 'sgmember'
+      WHERE SGROUP_ID = #sgroupId#
+        AND MEM_ID = #memId# 
+ 
+ </update>
+ 
+ <delete id="smemberDelete" parameterClass="sMemberVO">
+ 
+ 	 DELETE FROM SMEMBER
+      WHERE SGROUP_ID = #sgroupId#
+        AND MEM_ID = #memId#
+ 
+ </delete>
+ 
+ 
+ 
+</sqlMap>

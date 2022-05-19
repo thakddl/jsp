@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+	<servlet>
+		<servlet-name>MemberListServlet</servlet-name>
+		<servlet-class>com.jsp.controller.MemberListServlet</servlet-class>
+		
+		<init-param>
+			<param-name>sqlSessionFactory</param-name>
+			<param-value>com.jsp.dataresource.OracleMybatisSqlSessionFactory</param-value>
+		</init-param>
+		<init-param>
+			<param-name>memberDAO</param-name>
+			<param-value>com.jsp.dao.MemberDAOImpl</param-value>
+		</init-param>
+		<init-param>
+			<param-name>memberService</param-name>
+			<param-value>com.jsp.service.MemberServiceImpl</param-value>
+		</init-param>
+		
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MemberListServlet</servlet-name>
+		<url-pattern>/member/list</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>MemberDetailServlet</servlet-name>
+		<servlet-class>com.jsp.controller.MemberDetailServlet</servlet-class>
+		
+		<init-param>
+			<param-name>sqlSessionFactory</param-name>
+			<param-value>com.jsp.dataresource.OracleMybatisSqlSessionFactory</param-value>
+		</init-param>
+		<init-param>
+			<param-name>memberDAO</param-name>
+			<param-value>com.jsp.dao.MemberDAOImpl</param-value>
+		</init-param>
+		<init-param>
+			<param-name>memberService</param-name>
+			<param-value>com.jsp.service.MemberServiceImpl</param-value>
+		</init-param>
+		
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MemberDetailServlet</servlet-name>
+		<url-pattern>/member/detail</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>MemberInsertServlet</servlet-name>
+		<servlet-class>com.jsp.controller.MemberInsertServlet</servlet-class>
+		
+		<init-param>
+			<param-name>sqlSessionFactory</param-name>
+			<param-value>com.jsp.dataresource.OracleMybatisSqlSessionFactory</param-value>
+		</init-param>
+		<init-param>
+			<param-name>memberDAO</param-name>
+			<param-value>com.jsp.dao.MemberDAOImpl</param-value>
+		</init-param>
+		<init-param>
+			<param-name>memberService</param-name>
+			<param-value>com.jsp.service.MemberServiceImpl</param-value>
+		</init-param>
+		
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MemberInsertServlet</servlet-name>
+		<url-pattern>/member/insert</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>MemberUpdateServlet</servlet-name>
+		<servlet-class>com.jsp.controller.MemberUpdateServlet</servlet-class>
+		
+		<init-param>
+			<param-name>sqlSessionFactory</param-name>
+			<param-value>com.jsp.dataresource.OracleMybatisSqlSessionFactory</param-value>
+		</init-param>
+		<init-param>
+			<param-name>memberDAO</param-name>
+			<param-value>com.jsp.dao.MemberDAOImpl</param-value>
+		</init-param>
+		<init-param>
+			<param-name>memberService</param-name>
+			<param-value>com.jsp.service.MemberServiceImpl</param-value>
+		</init-param>
+		
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MemberUpdateServlet</servlet-name>
+		<url-pattern>/member/update</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>MemberDeleteServlet</servlet-name>
+		<servlet-class>com.jsp.controller.MemberDeleteServlet</servlet-class>
+		<init-param>
+			<param-name>sqlSessionFactory</param-name>
+			<param-value>com.jsp.dataresource.OracleMybatisSqlSessionFactory</param-value>
+		</init-param>
+		<init-param>
+			<param-name>memberDAO</param-name>
+			<param-value>com.jsp.dao.MemberDAOImpl</param-value>
+		</init-param>
+		<init-param>
+			<param-name>memberService</param-name>
+			<param-value>com.jsp.service.MemberServiceImpl</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MemberDeleteServlet</servlet-name>
+		<url-pattern>/member/delete</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>MemberIdCheckServlet</servlet-name>
+		<servlet-class>com.jsp.controller.MemberIdCheckServlet</servlet-class>
+		<init-param>
+			<param-name>sqlSessionFactory</param-name>
+			<param-value>com.jsp.dataresource.OracleMybatisSqlSessionFactory</param-value>
+		</init-param>
+		<init-param>
+			<param-name>memberDAO</param-name>
+			<param-value>com.jsp.dao.MemberDAOImpl</param-value>
+		</init-param>
+		<init-param>
+			<param-name>memberService</param-name>
+			<param-value>com.jsp.service.MemberServiceImpl</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MemberIdCheckServlet</servlet-name>
+		<url-pattern>/member/memberIdCheck</url-pattern>
+	</servlet-mapping>
+	
+</web-app>

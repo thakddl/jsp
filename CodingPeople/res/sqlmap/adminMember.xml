@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<!-- 관리자 > 회원정보 관리 xml -->
+<sqlMap namespace="adminMem">
+
+	<!-- ▼ [selectAllMember]를 위한 resultmap-->
+  	<resultMap id="memMap" class="allMemVO" >
+		<result property="memId" column="MEM_ID"/>
+		<result property="memName" column="MEM_NAME"/>
+		<result property="mgId" column="MG_ID"/>
+		<result property="memTel" column="MEM_TEL"/>
+		<result property="memCoin" column="MEM_COIN"/>
+		<result property="memPoint" column="MEM_POINT"/>
+		<result property="msId" column="MS_ID"/>
+		<result property="memDate" column="MEM_DATE"/>
+	</resultMap> 
+	
+	<!-- ▼ 전체 회원 조회 쿼리 -->
+	<select id="selectAllMember" resultClass="allMemVO" resultMap="memMap">
+	<!-- <select id="selectAllMember"> -->
+		select MEM_ID
+			   ,MEM_NAME
+			   ,MG_ID
+			   ,MEM_TEL
+			   ,MEM_COIN
+			   ,MEM_POINT
+			   ,MS_ID
+			   ,MEM_DATE
+  		  from member
+  		 where MS_ID != 'admin1'
+  		 order by 1
+	</select>
+	
+	<!-- ▼ 키워드 검색 회원 조회 쿼리 -->
+	<!-- <select id="searchMember" resultClass="allMemVO" resultMap="memMap" parameterClass="String"> -->
+	<select id="searchMember" parameterClass="String" resultMap="memMap">
+		select MEM_ID
+			   ,MEM_NAME
+			   ,MG_ID
+			   ,MEM_TEL
+			   ,MEM_COIN
+			   ,MEM_POINT
+			   ,MS_ID
+			   ,MEM_DATE
+  		  from member
+  		 where 
+ 		       MEM_ID like '%' || #keyword# || '%'
+			or MEM_NAME like '%' || #keyword# || '%'
+			or MG_ID like '%' || #keyword# || '%'
+			or MEM_TEL like '%' || #keyword# || '%'
+			or MEM_COIN like '%' || #keyword# || '%'
+			or MEM_POINT like '%' || #keyword# || '%'
+			or MS_ID like '%' || #keyword# || '%'
+			or MEM_DATE like '%' || #keyword# || '%'
+  		 order by 1
+	</select>
+
+	
+	<!-- ▼ 회원 정보 수정 쿼리 -->
+	<update id="updateMember" parameterClass="allMemVO">
+		update MEMBER
+		   SET 
+		  <!-- MEM_ID   = #memId# --> <!-- 회원아이디 / Update 제외 -->
+		       <!-- ,MEM_PASS = #memPass# -->	  <!-- 비밀번호 -->
+		       MEM_NAME = #memName#   <!-- 이름 -->
+		       ,MEM_BIR  = #memBir#    <!-- 생일 -->
+		       ,MEM_ADD1 = #memAdd1#   <!-- 주소 -->
+		       ,MEM_ADD2 = #memAdd2#   <!-- 상세주소 -->
+		       ,MEM_ZIP  = #memZip#    <!-- 우편번호 -->
+		       ,MEM_TEL  = #memTel#    <!-- 전화번호 -->
+		       ,MEM_MAIL = #memMail#   <!-- 이메일 -->
+		       <!-- MG_ID    = #mgId# -->      <!-- 회원등급 -->
+		       <!-- MEM_COIN = #memCoin# -->   <!-- 코딩코인 -->
+		       <!-- MEM_POINT= #memPoint# -->  <!-- 활동포인트 -->
+		       ,MS_ID    = #msId#      <!-- 회원상태 -->
+	  	  <!-- MEM_DATE = #memDate# --> <!-- 회원가입일자 / Update 제외 -->
+	  	 where MEM_ID   = #memId#
+	  </update>
+
+
+	<!-- ▼ [getMember]위한 resultMap(Member Table 전체 컬럼 사용) -->
+   	<resultMap id="getMemMap" class="allMemVO" >
+		<result property="memId"	 column="MEM_ID"/>
+		<result property="memPass"	 column="MEM_PASS"/>
+		<result property="mgId"		 column="MG_ID"/>
+		<result property="memName"	 column="MEM_NAME"/>
+		<result property="memBir"	 column="MEM_BIR"/>
+		<result property="memAdd1"	 column="MEM_ADD1"/>
+		<result property="memAdd2"	 column="MEM_ADD2"/>
+		<result property="memZip"	 column="MEM_ZIP"/>
+		<result property="memTel"	 column="MEM_TEL"/>
+		<result property="memMail"	 column="MEM_MAIL"/>
+		<result property="memCoin"	 column="MEM_COIN"/>
+		<result property="memPoint"	 column="MEM_POINT"/>
+		<result property="msId"		 column="MS_ID"/>
+		<result property="memDate"	 column="MEM_DATE"/>
+	</resultMap>  
+	  
+	<!-- ▼ 선택회원 정보 불러오는 쿼리 -->
+	<select id="getMember" parameterClass="String" resultMap="getMemMap">
+		select 
+		  	    MEM_ID    <!-- 회원아이디 -->
+		       ,MEM_PASS  <!-- 비밀번호 -->
+		       ,MG_ID     <!-- 회원등급 -->
+		       ,MEM_NAME  <!-- 이름 -->
+		       ,MEM_BIR   <!-- 생일 -->
+		       ,MEM_ADD1  <!-- 주소 -->
+		       ,MEM_ADD2  <!-- 상세주소 -->
+		       ,MEM_ZIP   <!-- 우편번호 -->
+		       ,MEM_TEL   <!-- 전화번호 -->
+		       ,MEM_MAIL  <!-- 이메일 -->
+		       ,MEM_COIN  <!-- 코딩코인 -->
+		       ,MEM_POINT <!-- 활동포인트 -->
+		       ,MS_ID     <!-- 회원상태 -->
+	  	 	   ,MEM_DATE  <!-- 회원가입일자 -->
+	  	 from MEMBER 
+	  	WHERE mem_id=#memId#
+	  </select>
+	
+</sqlMap>

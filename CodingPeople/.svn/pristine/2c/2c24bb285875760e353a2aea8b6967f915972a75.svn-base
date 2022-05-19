@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="book">
+<!-- 
+	이 영역에 SQL문에 맞는 태그를 사용하여 SQL문을 작성한다.
+	
+	사용할 수 있는 기본적인 태그들
+	<select> ~~~ </select>
+	<insert> ~~~ </insert>
+	<update> ~~~ </update>
+	<delete> ~~~ </delete>
+	
+	위 태그에서 사용되는 속성들
+	
+	1) id속성 : 해당 태그를 호출할 때 <sqlMap>태그의 namespace와 연결하여 사용하는 이름.
+	2) parameterClass속성 : SQL문에 사용될 데이터가 들어있는 객체를 지정한다.(보통 VO클래스, 자바의 자료형이름 등이 사용된다.)
+						  (typeAlias로 지정한 alias명을 사용할 수 있다.
+	3) resultClass속성 : select문을 실행한 결과를 담을 객체를 지정한다. (보통 VO클래스나 자바의 자료형이름을 사용한다.)
+	4) resultMap속성 : 결과 레코드 컬럼명과 VO객체의 property명이 다를 경우에 적절한 매핑을 위해 사용한다.
+ -->
+ 
+ 
+	
+  <resultMap id="bookCategoryMap" class="bookCategoryVO">
+ 	<result property="categoryId" column="CATEGORY_ID"/>
+ 	<result property="categoryName" column="CATEGORY_NAME"/>
+ </resultMap>
+ 
+	<select id="displayCategory" resultMap="bookCategoryMap">
+
+		SELECT CATEGORY_ID
+			  ,CATEGORY_NAME
+		  FROM CATEGORY
+		 ORDER BY CATEGORY_ID DESC
+		   
+	</select>
+	
+	<select id="bookCategory" resultMap="bookCategoryMap">
+
+		SELECT DISTINCT(C.CATEGORY_ID)
+			  ,C.CATEGORY_NAME
+          FROM CATEGORY C, BOOKINFO I, BOOK B
+         WHERE C.CATEGORY_ID = I.CATEGORY_ID
+           AND B.BOOKINFO_ID = I.BOOKINFO_ID
+         ORDER BY CATEGORY_ID DESC
+		   
+	</select>
+	
+ <resultMap id="bookInfoMap" class="book.VO.BookInfoVO">
+ 	<result property="bookInfoId" column="BOOKINFO_ID"/>
+ 	<result property="bookInfoNm" column="BOOKINFO_NM"/>
+ </resultMap>
+	
+	<select id="getBookInfoNm" resultMap="bookInfoMap">
+
+		SELECT BOOKINFO_NM
+			  ,BOOKINFO_ID
+		  FROM BOOKINFO
+ 		 WHERE CATEGORY_ID = #categoryName#
+ 		
+		   
+	</select>
+	
+	<select id="getInfoNm" resultMap="bookInfoMap">
+
+		SELECT DISTINCT(I.BOOKINFO_NM)
+			  ,I.BOOKINFO_ID
+		  FROM BOOKINFO I, BOOK B
+ 		 WHERE I.CATEGORY_ID = #categoryId#
+ 		   AND B.BOOKINFO_ID = I.BOOKINFO_ID
+ 		
+		   
+	</select>
+	
+	<resultMap id="bookGradeMap" class="book.VO.BookVO">
+ 	<result property="bookGradeId" column="BOOK_GRADE_ID"/>
+ </resultMap>
+	
+	<select id="getBookGrade" resultMap="bookGradeMap">
+
+	   SELECT BOOK_GRADE_ID
+         FROM BOOK
+        WHERE BOOKINFO_ID = #bookInfoId#
+ 		
+	</select>
+	
+	<resultMap id="bookMap" class="book.VO.BookVO">
+ 	<result property="bookSale" column="BOOK_SALE"/>
+ 	<result property="bookStock" column="BOOK_STOCK"/>
+ 	</resultMap>
+	
+	<select id="getSaleStock" resultMap="bookMap" parameterClass="book.VO.BookVO">
+
+	   SELECT BOOK_SALE
+             ,BOOK_STOCK
+         FROM BOOK
+        WHERE BOOKINFO_ID = #bookinfoId#
+          AND BOOK_GRADE_ID = #bookGradeId#
+		   
+	</select>
+	
+	
+	
+	<insert id="insertHistory" parameterClass="book.VO.BsellHistoryVO">
+ 	
+	 	INSERT INTO BSELL_HISTORY(
+	     BS_HISTORY_NO
+	    ,MEM_ID
+	    ,BOOKINFO_ID
+	    ,BS_HISTORY_DATE
+	    )
+	    VALUES(
+	     BS_HISTORY_SEQ.NEXTVAL
+	    ,#memId#
+	    ,#bookinfoId#
+	    ,SYSDATE)
+ 	
+ 	</insert>
+ 	
+	<insert id="insertBuyHistory" parameterClass="book.VO.BbuyHistoryVO">
+ 	
+	 	INSERT INTO BBUY_HISTORY
+	    VALUES(
+	     BB_HISTORY_SEQ.NEXTVAL
+	    ,#memId#
+	    ,#bookinfoId#
+	    ,1
+	    ,#bbHistoryPrice#
+	    ,SYSDATE
+	    ,#bbHistoryPrice#*1
+	    ,#bookGradeId#
+	    )
+ 	
+ 	</insert>
+ 	
+ 	<update id="bookStock" parameterClass="book.VO.BookVO">
+ 		
+ 		UPDATE BOOK
+		   SET BOOK_STOCK = BOOK_STOCK - 1
+		 WHERE BOOKINFO_ID = #bookinfoId#
+		   AND BOOK_GRADE_ID = #bookGradeId#
+ 		
+ 	</update>
+ 	
+ 	<update id="bookBuyCoin" parameterClass="book.VO.BbuyHistoryVO">
+ 		
+ 		UPDATE MEMBER
+		   SET MEM_COIN = MEM_COIN - #bbHistoryPrice#
+		 WHERE MEM_ID = #memId#
+ 		
+ 	</update>
+ 	
+ 	
+	
+	<!-- ※ HJE 추가 : 관리자 > 도서관리 시 도서 리스트 불러오는 select쿼리-->
+	<resultMap id="adminBookListMap" class="book.VO.BookListSearchVO" >
+		<result property="categoryId" column="CATEGORY_ID"/>
+		<result property="bookinfoNm" column="BOOKINFO_NM"/>
+		<result property="bookGradeId" column="BOOK_GRADE_ID"/>
+		<result property="bookStock" column="BOOK_STOCK"/>
+		<result property="bookSale" column="BOOK_SALE"/>
+		<result property="bookCost" column="BOOK_COST"/>
+		<result property="bookPrice" column="BOOK_PRICE"/>
+	</resultMap>
+	
+	<select id="getAdminBookList" resultMap="adminBookListMap">
+		select 
+		         CATEGORY_ID
+		        ,BOOKINFO_NM
+		        ,BOOK_GRADE_ID
+		        ,BOOK_STOCK
+		        ,BOOK_SALE
+		        ,BOOK_COST
+		        ,BOOK_PRICE
+  		  from bookvo
+	</select>
+	
+
+ 
+</sqlMap>

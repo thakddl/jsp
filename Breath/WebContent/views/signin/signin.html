@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Sign in</title>
+<link rel="stylesheet" href="../../css/signin.css">
+<script src="../../js/jquery-3.6.0.min.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="../../css/bootstrap.min.css">
+<style>
+</style>
+</head>
+<body>
+	<div id="con">
+		<div id="login_div">
+			<div id="login_form">
+				<!--로그인 양식-->
+					<h3 class="login" style="letter-spacing: -1px;">Login</h3>
+
+					<hr>
+					<br>
+					<table>
+						<tr>
+							<td class="td1"><label for="id" class="inputName">ID</label></td>
+							<td><input type="text" id="id" placeholder="아이디를 입력하세요" class="size" autocomplete="off"></td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td class="td1"><label for="pw" class="inputName">Password</label></td>
+							<td><input type="password" id="pw" placeholder="비밀번호를 입력하세요" class="size" autocomplete="off"></td>
+						</tr>
+					</table>
+					<br><br>
+					<p>
+						<input type="button" value="로그인" id="login" class="btn"> 
+						<input type="button" id="cancel" value="취소" class="btn1">
+					</p>
+				<hr>
+				<p class="find">
+					<span><a href="#" id="findId">아이디 찾기</a></span> 
+					<span><a href="#" id="findPw">비밀번호 찾기</a></span> 
+					<span><a href="signup.html">회원가입</a></span>
+				</p>
+			</div>
+		</div>
+	</div>
+	<!--con-->
+
+	<!--ID 찾기 Modal start -->
+	<div id="myModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!--             Modal content -->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h3 class="modal-title">아이디 찾기</h3>
+				</div>
+				<div class="modal-body">
+					<table>
+						<tr>
+						
+							<td class="td1"><label for="name">이름</label></td>
+							<td>
+							<div class="form-group">
+							<input type="text" id="name" class="form-control" placeholder="이름을 입력하세요" name="mem_name">
+							</div>
+							</td>
+						 	
+						</tr>
+						<tr>
+							<td class="td1"><label for="hp">휴대전화</label></td>
+							<td><div class="form-group">
+							<input type="text" id="hp" class="form-control" placeholder="- 빼고 전화번호를 입력하세요" name="mem_hp">
+							</div>
+							</td>
+						</tr>
+					</table>
+					<br> <span id="rs"></span>
+					<hr>
+					<input type="button" class="btn" id="find-Id" value="아이디 찾기">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--  ID 찾기 Modal end -->
+	
+	<!--PW 찾기 Modal start -->
+	<div id="myModal2" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content -->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" id="close1" class="close" data-dismiss="modal">&times;</button>
+					<h3 class="modal-title">비밀번호 찾기</h3>
+				</div>
+				<div class="modal-body">
+					<table>
+						<tr>
+							<td class="td1"><label for="id">아이디</label></td>
+							<td>
+							<div class="form-group">
+							<input type="text" id="id" class="form-control" placeholder="아이디를 입력하세요" name="mem_id">
+							</div>
+							</td>
+						</tr>
+						<tr>
+							<td class="td1"><label for="name2">이름</label></td>
+							<td>
+							<div class="form-group">
+							<input type="text" id="name2" class="form-control" placeholder="이름을 입력하세요" name="mem_name">
+							</div>
+							</td>
+						</tr>
+						<tr>
+							<td class="td1"><label for="hp2">휴대전화</label></td>
+							<td><div class="form-group">
+							<input type="text" id="hp2" class="form-control" placeholder="- 빼고 전화번호를 입력하세요" name="mem_hp">
+							</div>
+							</td>
+						</tr>
+					</table>
+					<hr>
+					<input type="button" class="btn" id="find-Pw" value="비밀번호 찾기">
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="close2" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--  PW 찾기 Modal end -->
+
+	<script>
+		$('#cancel').on('click', function() {
+			window.location.replace("http://localhost/Breath/index.html");
+		});
+		
+   		// 비밀번호 부분에서 엔터 누를시 로그인 버튼 클릭 효과
+		$('#pw').keydown(function(e) {
+   			if (e.keyCode == 13) {
+                $("#login").trigger('click');
+   			}
+		});
+		
+   		// 로그인 버튼 클릭했을 때 
+		$('#login').on('click', function() {
+			let id = $('#id').val();
+			//console.log("id 입력값 : " + id);
+			let pw = $('#pw').val();
+			//console.log("pw 입력값 : " + pw);
+
+			if (id == "") {
+				alert("아이디를 입력하세요.");
+				return false;
+			} else if (pw == "") {
+				alert("비밀번호를 입력하세요.");
+				return false;
+			}
+			$.ajax({
+				url : '/Breath/login.member',
+				type : 'post',
+				data : {
+					'mId' : id,
+					'mPw' : pw
+				},
+				success : function(aa) {
+					if (aa.cd == "ok") {
+						alert(aa.str);
+						location.replace("../../index.jsp");
+					} else {
+						alert(aa.str);
+					}
+				},
+				error : function(xhr) {
+					alert(xhr.status);
+				},
+				dataType : 'json'
+			});
+
+		});
+
+		$('#findId').on('click', function() {
+			$('#myModal').modal({backdrop : 'static'});
+		});
+		
+		$('#find-Id').on('click',function(){
+			 let name = $('#name').val();
+			 let hp = $('#hp').val();
+			// console.log("name : " + name);
+			// console.log("hp : " + hp);
+			 
+			 $.ajax({
+		         url : '/Breath/views/signin/find_id.jsp',
+		         type : 'post',
+		         data : {'Nm' : name, 'Hp' : hp},
+		         success : function(a) {
+		         	console.log(a.rst);
+		         	$('#rs').html("회원님의 아이디는 " + a.rst + "입니다.");         	
+		         },
+		         error : function(xhr) {
+		            alert("오류입니다");
+		         },
+		         dataType : 'json'
+		      });
+			 
+		});
+		
+		$('.modal').on('hidden.bs.modal', function (e) {
+		    //console.log('modal close');
+		    $('#name').val("");
+		    $('#hp').val("");
+		    $('#rs').empty();
+		    $('#id').val("");
+		    $('#name2').val("");
+		    $('#hp2').val("");
+		});
+		
+		$('#findPw').on('click', function() {
+			$('#myModal2').modal({backdrop : 'static'});
+		});
+		
+		$('#find-Pw').on('click',function(){
+			
+		});
+	</script>
+</body>
+</html>

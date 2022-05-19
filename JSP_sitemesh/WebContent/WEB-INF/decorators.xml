@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators defaultdir="/WEB-INF/decorator">
+
+	<decorator name="main" page="decorator.jsp">
+		<pattern>/*</pattern>
+	</decorator>
+	
+	<!-- 
+	여러개 설정 가능
+	<decorator name="openWindow" page="open_decorator.jsp">
+		<pattern>/**/*</pattern>
+		<pattern>/main.do</pattern>		
+	</decorator>
+	제외 가능
+	<excludes>		
+		<pattern>/resources/*</pattern>					
+	</excludes>	 
+	-->
+	
+</decorators>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="membership">
+<resultMap class="membership.vo.MembershipVO" id="getship">
+	<result property="clientId" column="CLIENT_ID"/>
+	<result property="trainerId" column="TRAINER_ID"/>
+	<result property="startDt" column="START_DT"/>
+	<result property="endDt" column="END_DT"/>
+	<result property="Status" column="STATUS"/>
+</resultMap>
+
+<!-- 멤버쉽 DB 등록 -->
+<insert id="insertMembership" parameterClass="membershipVO">
+<!-- 	<selectKey keyProperty="shipNo" resultClass="int"> -->
+<!-- 		SELECT SEQ_MEMBERSHIP.NEXTVAL FROM DUAL -->
+<!-- 	</selectKey> -->
+<!-- 	INSERT INTO MEMBERSHIP -->
+<!-- 	VALUES ( -->
+<!-- 			 #shipNo#, -->
+<!-- 			 sysdate, -->
+<!-- 			 ship -->
+<!-- 			 #memId#, -->
+<!-- 			 #trainerId# -->
+<!-- 		   ) -->
+	INSERT INTO MEMBERSHIP
+	VALUES 
+	(
+	#clientId#,
+	#trainerId#,
+	sysdate,
+	sysdate+30,
+	1
+	)
+
+</insert>
+
+
+<!-- 멤버쉽 권한 업데이트 -->
+<update id="updateAthrt" parameterClass="String">
+
+	update member
+	   set athrt_code = 3
+	 where mem_id = #memId#
+
+</update>
+
+<!-- 멤버쉽 정보 (가입한 멤버쉽 내역)-->
+<select id="getShipList" parameterClass="String" resultMap="getship">
+	select * from membership
+	 where client_id = #clientId#
+</select>
+
+
+<select id="shipCount" resultClass="int">
+
+	select count(*) 
+	  from membership
+	 where status = 1
+
+</select>
+
+
+<!-- 멤버쉽 상세 정보 -->
+<!-- <select id="getShipDetail" parameterClass="" resultClass=""> -->
+
+	
+
+<!-- </select> -->
+
+
+
+
+</sqlMap>
+
+
+
+
+

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="trainerHome">
+
+<insert id="insertTrainerInfo" parameterClass="trainerHome.vo.TrainerHomeVO">
+	
+	INSERT INTO TRAINER_HOME (TRAINER_ID, INTRO_NM, INTRO_SUB, INTRO_MAIN, ATCH_ID)
+    VALUES ('a100', #introNm#, #introSub#, #introMain#, #atchId#)
+	
+</insert>
+
+
+<resultMap class="trainerHome.vo.TrainerHomeVO" id="trainerHomeMap">
+
+<result property="trainerId" column="TRAINER_ID"/>
+<result property="introNm" column="INTRO_NM"/>
+<result property="introSub" column="INTRO_SUB"/>
+<result property="introMain" column="INTRO_MAIN"/>
+<result property="atchId" column="ATCH_ID"/>
+
+</resultMap>
+
+
+<select id="getTrainerHomeALl" resultMap="trainerHomeMap">
+
+
+		select *
+	      from TRAINER_HOME
+
+</select>
+
+<resultMap class="trainerHome.vo.TrainerHomeVO" id="trainerHomeMapp">
+
+<result property="introNm" column="INTRO_NM"/>
+<result property="introSub" column="INTRO_SUB"/>
+<result property="introMain" column="INTRO_MAIN"/>
+<result property="filePath" column="FILE_PATH"/>
+
+</resultMap>
+
+<select id="eachTrainerInfo" parameterClass="String" resultMap="trainerHomeMapp">
+	SELECT A.INTRO_NM AS INTRO_NM,
+               A.INTRO_SUB AS INTRO_SUB,
+       		   A.INTRO_MAIN AS INTRO_MAIN,
+       		   B.FILE_PATH AS FILE_PATH
+	      FROM TRAINER_HOME A, ATCH_FILE_DETAIL B
+ 		 WHERE A.ATCH_ID = B.ATCH_ID
+   		   AND A.TRAINER_ID = 'a100'
+</select>
+
+<update id="updateTrainerInfo" parameterClass="trainerHome.vo.TrainerHomeVO">
+
+	UPDATE TRAINER_HOME
+    SET INTRO_NM = #introNm#
+        ,INTRO_SUB = #introSub#
+        ,INTRO_MAIN = #introMain#
+         ,ATCH_ID = #atchId#
+	   WHERE TRAINER_ID = 'a100'
+</update>	
+
+<select id="getTrainer" parameterClass="String"
+	resultMap="trainerHomeMap">
+
+	select * from TRAINER_HOME where TRAINER_ID = #trainerId#
+
+</select>
+
+<!-- <delete id="deleteTrainerInfo" parameterClass="trainerHome.vo.TrainerHomeVO">
+	
+	delete from TRAINER_HOME where mem_id = 'a100'
+	 
+</delete> -->
+
+</sqlMap>	

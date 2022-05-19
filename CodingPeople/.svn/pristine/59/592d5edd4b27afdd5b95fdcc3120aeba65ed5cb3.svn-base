@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="joinMem">
+	<update id="joinMember" parameterClass="joinMemberVO">
+		INSERT INTO MEMBER 
+				   (MEM_ID
+				   ,MEM_PASS
+				   ,MEM_NAME
+				   ,MEM_BIR
+				   ,MEM_ADD1
+				   ,MEM_ADD2
+				   ,MEM_ZIP
+				   ,MEM_TEL
+			 	   ,MEM_MAIL
+			 	   ,MEM_DATE) 
+		   VALUES (#memId#
+		   		  ,#memPass#
+		   		  ,#memName#
+		   		  ,#memBir#
+		   		  ,#memAdd1#
+		   		  ,#memAdd2#
+		   		  ,#memZip#
+		   		  ,#memTel#
+		   		  ,#memMail#
+		   		  ,SYSDATE)
+	</update>
+	
+	<select id="idCheck" parameterClass="String" resultClass="int">
+	<!-- <select id="idCheck" parameterClass="String" resultClass="int"> -->
+		select count(*)
+  		  from member
+ 		 where mem_id=#memId# 
+	</select>
+	
+	<update id="secessionMember" parameterClass="String">
+		
+		UPDATE MEMBER
+		   SET MS_ID = 'delete'
+		 WHERE MEM_ID = #memId# 
+		
+	</update>
+	
+</sqlMap>

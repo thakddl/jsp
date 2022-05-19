@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+			
+			
+<sqlMap namespace="review">
+
+	<!-- 전체 글 갯수 조회 -->
+	<select id="countList" resultClass="int">
+		SELECT COUNT(*) FROM REVIEW
+	</select>
+	
+
+	<!-- 리스트 출력 -->
+	<select id="boardList" resultClass="reviewVO" parameterClass="map">
+		SELECT A.* FROM (
+    		select ROWNUM as RNUM, B.*  FROM (
+         		SELECT * FROM REVIEW 
+         		ORDER BY POST_Num DESC) B
+		<![CDATA[
+     		where rownum <= #end#) A 
+ 		where A.rnum >= #start#
+		]]>
+	</select>
+	
+	
+	<!-- 게시글 저장 -->
+	<insert id="insertBoard" parameterClass="reviewVO">
+		<selectKey keyProperty="postNum" resultClass="int">
+			SELECT SEQ_REVIEW.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO BOARD
+		VALUES(
+			#postNum#,
+		    SYSDATE,
+		    #title#,
+		    #content#,
+		    0,
+		    #ipAdd#,
+		    #likes#,
+		    #rated#,
+		    #clientId#,
+		    #trainerId#,
+		    #updateDt#,
+		    #deleteDt#,
+		    0
+		)
+	</insert>
+
+	
+	
+	<!-- 게시글 수정 -->
+
+</sqlMap>

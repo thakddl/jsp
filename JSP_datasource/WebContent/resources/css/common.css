@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+.dataRow:hover {
+	cursor: pointer;
+	font-weight: bolder;
+	color: #0d6efd;
+}
+
+
+.modal-content {
+     max-height: 80vh;
+     overflow-y: auto;
+     -ms-overflow-style: none;
+ }
+ .modal-content::-webkit-scrollbar {
+ 	display:none;
+ }

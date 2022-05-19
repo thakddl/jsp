@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="signupMember">
+
+<resultMap class="member.vo.MemberVO" id="memberMap">
+	 <result property="memId" column="MEM_ID" />
+	 <result property="athrtCode" column="ATHRT_CODE" />
+	 <result property="memPass" column="MEM_PASS" />
+	 <result property="memNm" column="MEM_NM" />
+	 <result property="nickName" column="NICKNAME" />
+	 <result property="gender" column="GENDER" />
+	 <result property="email" column="EMAIL" />
+	 <result property="hp" column="HP" />
+	 <result property="rgstDt" column="RGST_DT" />
+	 <result property="birthDt" column="BIRTH_DT" />
+	 <result property="status" column="STATUS" />
+	 <result property="zip" column="ZIP" />
+	 <result property="memAdd" column="MEM_ADD" />
+	 <result property="detailAdd" column="DETAIL_ADD" />
+	 <result property="evdDoc" column="EVD_DOC" />
+	 <result property="pymntMthd" column="PYMNT_MTHD" />
+</resultMap>
+		
+	<insert id="insertMember" parameterClass="memberVO">
+		INSERT INTO MEMBER(MEM_ID,ATHRT_CODE,MEM_PASS,MEM_NM,NICKNAME,GENDER,EMAIL,HP,RGST_DT,BIRTH_DT,STATUS,ZIP,MEM_ADD,DETAIL_ADD)
+		VALUES
+		(#memId#,2,#memPass#,#memNm#,#nickName#,#gender#,#email#,#hp#,sysdate,#birthDt#,1,#zip#,#memAdd#,
+        #detailAdd#)       
+	</insert>
+	<update id="updateMember" parameterClass="memberVO">
+		UPDATE MEMBER
+				SET 
+				MEM_ID=#memId#,
+				MEM_PASS=#memPass#,
+				MEM_NM=#memNm#,
+				NICKNAME=#nickName#,
+				EMAIL=#email#,
+				HP=#hp#,
+				MEM_ADD=#memAdd#
+	  WHERE MEM_NM=#memNm#
+	</update>
+	<update id="deleteMember" parameterClass="String">
+		UPDATE MEMBER
+			SET STATUS = '3'
+		 WHERE MEM_ID=#memId#
+	</update>
+	
+	<update id="updatePass" parameterClass="memberVO">
+		UPDATE MEMBER
+		   SET MEM_PASS=#memPass#
+		 WHERE MEM_ID=#memId#
+	</update>
+	<select id="getMember" parameterClass="memberVO" resultMap="memberMap">
+		SELECT * FROM MEMBER WHERE MEM_ID = #memId# AND MEM_PASS = #memPass#
+	</select>
+
+</sqlMap>     		

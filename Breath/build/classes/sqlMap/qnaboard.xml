@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="qnaBoard">
+
+<resultMap class="qnaboard.vo.qnaBoardVO" id="boardMap">
+	<result property="post_num" column="POST_NUM"/>
+	<result property="mem_id" column="MEM_ID"/>
+	<result property="title" column="TITLE"/>
+	<result property="post_dt" column="POST_DT"/>
+	<result property="views" column="VIEWS"/>
+
+</resultMap>
+
+<resultMap class="qnaboard.vo.qnaBoardVO" id="selectContent">
+	<result property="post_num" column="POST_NUM"/>
+	<result property="mem_id" column="MEM_ID"/>
+	<result property="post_dt" column="POST_DT"/>
+	<result property="title" column="TITLE"/>
+	<result property="content" column="CONTENT"/>
+	<result property="v_pass" column="V_PASS"/>
+	<result property="ip_add" column="IP_ADD"/>
+	<result property="status" column="STATUS"/>
+</resultMap>
+
+
+<resultMap class="qnaboard.vo.qnaBoardReplyVO" id="boardselectReplyMap">
+	<result property="comment_num" column="COMMENT_NUM"/>
+	<result property="mem_id" column="MEM_ID"/>
+	<result property="comm_dt" column="COMM_DT"/>
+	<result property="content" column="CONTENT"/>
+	<result property="ip_add" column="IP_ADD"/>
+	<result property="status" column="STATUS"/>
+</resultMap>
+
+<resultMap class="qnaboard.vo.qnaBoardReplyVO" id="boardReplyMap">
+	<result property="comment_num" column="COMMENT_NUM"/>
+	<result property="mem_id" column="MEM_ID"/>
+	<result property="comm_dt" column="COMM_DT"/>
+	<result property="content" column="CONTENT"/>
+	<result property="post_num" column="POST_NUM"/>
+	<result property="ip_add" column="IP_ADD"/>
+	<result property="status" column="STATUS"/>
+</resultMap>
+
+<select id="getBoardReply" resultMap="boardReplyMap">
+	SELECT *
+	  FROM QNA_REPLY A, QNA B
+	 WHERE B.POST_NUM=A.POST_NUM
+	   AND B.POST_NUM=#post_num#
+</select>
+
+<insert id="insertBoardReply" parameterClass="qnaboard.vo.qnaBoardReplyVO">
+	INSERT INTO QNA_REPLY
+	(
+		COMMENT_NUM,
+		COMM_DT,
+		CONTENT,
+		POST_NUM
+	)
+	values(
+		SEQ_QNA_REPLY.NEXTVAL,
+		SYSDATE,
+		#content#,
+		#post_num#
+	)
+</insert>
+
+<select id="getBoard" resultMap="boardMap">
+	select post_num, mem_id, title, post_dt, views from qna
+	where 10>rownum
+	order by post_num desc
+</select>
+
+<select id="selectBoard" parameterClass="String" resultMap="selectContent">
+	SELECT
+		POST_NUM,
+		MEM_ID,
+		POST_DT,
+		TITLE,
+		CONTENT,
+		V_PASS,
+		IP_ADD,
+		STATUS	
+	 FROM QNA	
+	WHERE POST_NUM=#post_num#
+</select>
+
+<insert id="insertBoard" parameterClass="qnaboard.vo.qnaBoardVO">
+	insert into qna
+	(
+		POST_NUM,
+		MEM_ID,
+		POST_DT,
+		TITLE,
+		CONTENT,
+		V_PASS,
+		IP_ADD,
+		STATUS		
+	)
+	values(
+		SEQ_QNA.NEXTVAL,
+		#mem_id#,
+		SYSDATE,
+		#title#,
+		#content#,
+		#v_pass#,
+		#ip_add#,
+		#status#
+	)
+</insert>
+
+<update id="updateBoard" parameterClass="qnaboard.vo.qnaBoardVO">
+	UPDATE qna
+		SET MEM_ID = #mem_id# , 
+		TITLE =#title# ,
+		UPDATE_DT = #update_dt#,
+		CONTENT = #content#,
+		V_PASS = #v_pass#,
+		IP_ADD = #ip_add#
+  WHERE post_num =#post_num#
+</update>
+
+<delete id="deleteBoard" parameterClass="String">
+	delete from qna where post_num= #post_num#
+</delete>
+
+</sqlMap>			
+
+
+
+
+

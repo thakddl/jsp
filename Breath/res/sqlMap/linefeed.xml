@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="lineFeed">
+	<resultMap class="linefeed.vo.LineFeedVO" id="lineFeedMap">
+		<result property="lnfdNum" column="LNFD_NUM"/>
+		<result property="trainerId" column="TRAINER_ID"/>
+		<result property="postDt" column="POST_DT"/>
+		<result property="content" column="CONTENT"/>
+		<result property="views" column="VIEWS"/>
+		<result property="ipAdd" column="IP_ADD"/>
+		<result property="likes" column="LIKES"/>
+		<result property="updateDt" column="UPDATE_DT"/>
+		<result property="deleteDt" column="DELETE_DT"/>
+		<result property="status" column="STATUS"/>
+		<result property="atchId" column="ATCH_ID"/>
+		<result property="filePath" column="FILE_PATH"/>
+		<result property="fileExtns" column="FILE_EXTNS"/>
+	</resultMap>
+	
+	<insert id="insertLineFeed" parameterClass="lineFeedVO">
+		<selectKey keyProperty="lnfdNum" resultClass="String">
+			SELECT SEQ_LINEFEED.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO LINEFEED(LNFD_NUM,TRAINER_ID,POST_DT,CONTENT,VIEWS,IP_ADD,LIKES,UPDATE_DT,DELETE_DT,STATUS,ATCH_ID)
+		 VALUES(#lnfdNum#,#trainerId#,SYSDATE,#content#,#views#,#ipAdd#,#likes#,#updateDt#,#deleteDt#,#status#,#atchId#)
+	</insert>
+	
+	<resultMap class="lineFeedVO" id="lineFeedMap2">
+		<result property="lnfdNum" column="LNFD_NUM"/>
+		<result property="trainerId" column="TRAINER_ID"/>
+		<result property="postDt" column="POST_DT"/>
+		<result property="content" column="CONTENT"/>
+		<result property="views" column="VIEWS"/>
+		<result property="status" column="STATUS"/>
+		<result property="filePath" column="FILE_PATH"/>
+		<result property="fileExtns" column="FILE_EXTNS"/>
+	</resultMap>	
+	
+	<select id="getAllPostList" remapResults="true" parameterClass="lineFeedVO" resultMap="lineFeedMap2">
+		SELECT A.LNFD_NUM AS LNFD_NUM,
+       		   A.TRAINER_ID AS TRAINER_ID,
+       		   A.POST_DT AS POST_DT,
+       		   A.CONTENT AS CONTENT,
+       		   A.VIEWS AS VIEWS,
+       		   A.STATUS AS STATUS,
+       		   B.FILE_PATH AS FILE_PATH,
+       		   B.FILE_EXTNS AS FILE_EXTNS
+	      FROM LINEFEED A, ATCH_FILE_DETAIL B
+ 		 WHERE A.ATCH_ID = B.ATCH_ID
+   		   AND A.TRAINER_ID = #trainerId#
+   		 ORDER BY 3 DESC
+	</select>
+	
+	<update id="deleteLineFeed" parameterClass="lineFeedVO" >
+		UPDATE LINEFEED
+		   SET STATUS = #status#,
+		       DELETE_DT = SYSDATE
+		 WHERE LNFD_NUM = #lnfdNum#
+	</update>
+	
+	<update id="updateLineFeed" parameterClass="lineFeedVO">
+		UPDATE LINEFEED
+		   SET CONTENT = #content#,
+		   	   UPDATE_DT = SYSDATE,
+		   	   IP_ADD = #ipAdd#,
+		       ATCH_ID = #atchId#
+		 WHERE LNFD_NUM = #lnfdNum#
+	</update>
+	
+</sqlMap>		

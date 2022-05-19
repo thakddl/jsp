@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<!-- 관리자 > 회원정보 관리 xml -->
+<sqlMap namespace="adminCategory">
+
+	<!-- ▼ [selectAllCategory]를 위한 resultmap-->
+  	<resultMap id="categoryMap" class="adminCategoryVO" >
+		<result property="categoryId" column="CATEGORY_ID"/>
+		<result property="categoryName" column="CATEGORY_NAME"/>
+	</resultMap> 
+	
+	<!-- ▼ 전체 카테고리 조회 쿼리 -->
+	<select id="selectAllCategory" resultMap="categoryMap">
+		select *
+  		  from CATEGORY
+	</select>
+	
+	
+	<!-- ▼ 키워드 포함 카테고리 조회 쿼리 -->
+	<select id="searchCategory" parameterClass="String" resultMap="categoryMap">
+		select *
+		  from CATEGORY
+		 where 
+		 	   <!-- CATEGORY_ID like '%' || #keyword# || '%' -->
+		 	   upper(CATEGORY_ID) like '%' || #keyword# || '%'
+		 	or upper(CATEGORY_ID) like '%' || #keyword# || '%'
+		 	<!-- or CATEGORY_NAME like '%' || #keyword# || '%' -->
+		 	or lower(CATEGORY_NAME) like '%' || #keyword# || '%'
+		 	or lower(CATEGORY_NAME) like '%' || #keyword# || '%'
+	</select>
+	
+	<!-- ▼ 카테고리 정보 수정 쿼리 -->
+	<update id="updateCategory" parameterClass="adminCategoryVO">
+		update CATEGORY
+		   set 
+		 	   CATEGORY_NAME = #categoryName#
+		 where CATEGORY_ID = #categoryId# 
+	</update>
+	
+	<!-- 선택한 카테고리 정보 불러오기 -->
+	<select id="getCategory" parameterClass="String" resultMap="categoryMap">
+		select *
+		  from CATEGORY
+		 where CATEGORY_ID = #categoryId# 
+	</select>
+	
+	<update id="insertCategory" parameterClass="adminCategoryVO">
+		insert into CATEGORY
+		   			(CATEGORY_ID, CATEGORY_NAME)
+     		 values (#categoryId#, #categoryName#)
+	</update>
+	
+	<delete id="deleteCategory" parameterClass="String">
+		delete from CATEGORY
+		      where CATEGORY_ID=upper(#categoryId#)
+		         or CATEGORY_ID=lower(#categoryId#)
+	</delete>
+	
+</sqlMap>

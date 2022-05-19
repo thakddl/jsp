@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Sign Up</title>
+<script src="../../js/jquery-3.6.0.min.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="../../css/bootstrap.min.css">
+<link rel="stylesheet" href="../../css/signup.css">
+<style>
+.modal_body{
+text-align: center;
+}
+</style>
+</head>
+<body>
+    <div id="con">
+    <div id="login">
+    <!--로그인 폼-->
+    <div id="login_form">
+    <form method="post">                     <!--  onsubmit="return valid()" -->
+        <h3 class="login">회원 가입</h3>
+		
+        <hr>
+    
+        <!--아이디-->
+        <p id="p1">
+		<label for="id">아이디</label>
+        <input type="text" id="id" placeholder="영문+숫자, 6~10자" class="size" name="memId">
+        <span id="img1"></span>
+        </p>
+        <span id="rst1" class ="rst"></span>
+        <span id="rst2" class ="rst"></span>
+        
+        <!--비밀번호-->
+	    <p class="p2">
+        <label for="pass">비밀번호</label>
+        <input type="password" id="pass" placeholder="영문,숫자,특수문자 포함 8자 이상" class="size" name="memPass">
+        <span id="img2"></span>
+	    </p>
+		
+        <!--비밀번호 확인-->
+        <p class="p2">
+        <label for="pass1">비밀번호 확인</label>
+        <input type="password" id="pass1" placeholder="비밀번호 확인" class="size">
+        </p>
+        <span id="rst3" class = "rst"></span>
+		<span id="rst4" class = "rst"></span>
+
+        <!--이름-->  
+        <p>
+        <label for="name">이름</label>
+        <input type="text" id="name" name="memNm" placeholder="한글 2~5자, 영문 3~30자" class="size">
+        <span id="img3"></span>
+        </p>
+        <span id="rst5" class = "rst"></span>
+		<span id="rst6" class = "rst"></span>
+        
+		<!--닉네임-->  
+        <p>
+        <label for="nicknm">닉네임</label>
+        <input type="text" id="nicknm" name="nickName" placeholder="한글,영어,숫자 포함 3~10자" class="size">
+        <span id="img4"></span>
+        </p>
+   	    <span id="rst7" class = "rst"></span>
+		<span id="rst8" class = "rst"></span>
+        
+        <!--성별-->  
+        <p id="gdp">
+        <label>성별</label>
+         &nbsp; &nbsp;<input type="radio" name="gender" value="남" checked="checked"> 남 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      	<input type="radio" name="gender" value="여"> 여
+        </p>
+        
+        <!--이메일-->  
+        <p>
+        <label for="mail">이메일</label>
+        <input type="text" id="mail" name="email" placeholder="hong@gmail.com" class="size">
+        <span id="img5"></span>
+        </p>
+        <span id="rst9" class = "rst">
+        </span><span id="rst10"></span>
+        
+        <!--휴대전화-->  
+        <p>
+        <label for="hp">휴대전화</label>
+        <input type="text" id="hp" name="hp" placeholder="- 빼고 입력해주세요 ex)01011110000" class="size">
+        <span id="img6"></span>
+        </p>
+        <span id="rst11" class="rst"></span>
+        <span id="rst12"></span>
+        
+        <!--생년월일-->  
+        <p>
+        <label for="bir">생년월일</label>
+        <input type="date" id="bir" name="birthDt" placeholder="010-0000-0000" class="size">
+        </p>
+        
+         <!--우편번호-->  
+        <p id="pzip">
+        <label for="zip">우편번호</label>
+        <input type="text" id="zip" name="zip" placeholder="우편번호">
+        <button type="button" id="modalBtn" class="btn btn-info btn-sm">우편검색</button>
+        </p>
+        
+        <!--주소-->  
+        <p>
+        <label for="add1">주소</label>
+        <input type="text" id="add1" name="memAdd" class="size" placeholder="주소">
+        </p>
+        
+        <!--상세주소-->  
+        <p>
+        <label for="add2">상세주소</label>
+        <input type="text" id="add2" name="detailAdd" class="size1" placeholder="상세주소">
+        <input type="text" id="add3" class="size1" placeholder="동이름">
+        </p>
+        
+        <br>
+        <p id="createbtn">
+         <input type="button" value="가입하기" id="sendBtn" class="btn1">
+     	</p>
+    </form>
+
+    <hr>
+    <p class="find">
+        <span><a href="signin.html" >로그인 페이지로 이동</a></span>
+        <span><a href="../../index.html" >메인 페이지로 이동</a></span>
+    </p>
+    </div>
+    </div>
+ </div><!--con-->
+ 
+ <!-- Modal start -->
+      <div id="myModal" class="modal fade" role="dialog">
+         <div class="modal-dialog">
+
+<!--             Modal content -->
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">우편번호 검색</h4>
+               </div>
+               <div class="modal-body">
+                 <div id="wrap"> 
+                 <!-- 우편번호 API가 띄워질 공간 --> 
+                 </div>
+                
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+               </div>
+            </div>
+         </div>
+      </div>
+<!--       Modal end -->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+</body>
+   <script>
+	// 입력값 유효성 검증
+	
+	// ID
+	
+	// ID 창 선택시 글씨 및 이미지 다 사라지게 함
+	$('#id').on('focus', function(){
+		$('#rst1').css('display','none');
+		$('#img1').empty();
+	});
+	
+	// ID 값 변할시 실행되는 함수
+		// ID 인풋 포멧 선택
+		let id = document.querySelector('#id');
+		
+	$('#id').on('change',function(){
+		// ID 정규식(소문자,대문자,숫자 특수문자 -,_ 포함 6~10자)
+		let regId = /[a-zA-Z0-9_-]{6,10}/;
+		// 공백일 때 처리
+		if(id.value === ""){
+			$('#id').css('border','solid red 2px');
+			$('#rst1').text("아이디를 입력해주세요.").css({'color':'red','display':'block'});
+			return false;
+		} 
+		// 유효성 검사(정규식과 비교)
+		else if(!regId.test(id.value)){
+			$('#id').css('border','solid red 2px');
+			$('#rst1').text("아이디는 영문+숫자+특수문자(-),(_) 혼합 6~10자 입니다.").css({'color':'red','display':'block'});
+			return false;
+		}
+		// 잘 입력시 결과 화면 출력
+		else{
+			console.log("성공");
+			$('#id').css('border','solid #58D3F7 2px');
+			$('#rst2').css('display', 'block');
+			$('<img>',{
+				'src' : './images/check.png',
+				'width' : '25px',
+				'height' : '25px'
+			}).appendTo($('#img1'));
+			//$('#rst1').text("잘 입력하셨습니다.").css('color','#58D3F7');
+		}
+	});	
+	
+	// PASSWORD
+	
+	// PASSWORD 창 선택시 글씨 및 이미지 다 사라지게 함
+ 	$('#pass').on('focus', function(){
+		$('#rst3').css('display','none');
+		$('#img2').empty();
+ 	});
+	
+	// PASSWORD 값 변할시 실행되는 함수
+			// PASSWORD 포멧 선택
+  		let pass = document.querySelector('#pass');
+  		let pass1 = document.querySelector('#pass1');
+  		
+ 		$('#pass').on('change',function(){
+		console.log(pass.value);
+		// PASSWORD 정규식
+		let regPw = /^(?=.*?[a-zA-Z])(?=.*?[0-9])(?=.*?[!@#$%^&*()]).{8,16}$/;
+		
+		if(pass.value === ""){
+			$('#pass').css('border','solid red 2px');
+			$('#rst3').text("비밀번호를 입력해주세요.").css('color','red');
+			return false;
+		} 
+		
+ 		});	
+// 		else if(!regPw.test(pass.value)){
+// 			$('#pass').css('border','solid red 2px');
+// 			$('#rst3').text("비밀번호는 영문+숫자+특수문자 8자 이상입니다.").css('color','red');
+// 			return false;
+// 		}
+		 
+// 		else if(pass.value != pass1.value){
+// 			$('#pass1').css('border','solid red 2px');
+// 			$('#rst3').text("비밀번호와 일치하지 않습니다.").css('color','red');
+// 			return false;
+// 		}
+		
+// 		else{
+// 			console.log("성공");
+// 			$('#pass').css('border-color','#58D3F7');
+// 			$('<img>',{
+// 				'src' : './images/check.png',
+// 				'width' : '25px',
+// 				'height' : '25px'
+// 			}).appendTo($('#img2'));
+// 		}
+ 	
+	
+	// !/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/.test(idVal) 비번 유효성 검증
+// 	let idVal = document.getElementById('id').value;
+// 	$('#id').on('blur', function() {
+// 	console.log(idVal);
+// 	if(idVal.length < 1){
+// 		alert("아이디를 입력해주세요");
+// 		//$('#rst1').val("아이디를 입력해주세요.");
+// 	} else{
+// 		alert("잘 입력하셨습니다");
+// 	}
+// 	});
+	
+// 	$('#id').on('blur', function() {
+// 		event.preventDefault();
+		
+		
+// 	});
+       function valid() {
+         
+//          event.preventDefault(); // submit 이벤트를 막아 페이지 리로드를 방지
+//          // 유효성 검증(validation check) - id
+//          let idValue = $('#id').val().trim();
+         
+//          // 길이체크
+//          if(idValue.length < 1) {
+//           //   alert("아이디를 입력하세요");
+//             noProc($('#id'), "아이디를 입력하세요");
+//             return false;
+//          }
+//          // 패턴체크
+//          let regId = /^[a-zA-Z][a-zA-Z0-9]{3,9}$/;
+//          if (regId.test(idValue)) {
+//             okProc($('#id'));
+//          } else {
+//             noProc($('#id'), "영문, 숫자, 4~10자리 입력 가능");
+//             return false;
+//          }
+         
+//          // 유효성 검증 - name
+//          let nameValue = $('#name').val().trim();
+//          if (nameValue.length < 1) {
+//             noProc($('#name'), "이름을 입력하세요");
+//             return false;
+//          }
+//          let regName = /^([가-힣]{2,5})||[a-zA-Z]{3,30}$/;
+//          if(regName.test(nameValue)) {
+//             okProc($('#name'));
+//          } else {
+//             noProc($('#name'), "한글 2~5자리, 영문 3~30자리 입력 가능");
+//          }
+//          // 전방탐색(?=) : 찾을문자를 선택하는 기호 ' ?=기준문자 ' 를 지정한다
+//          // . 문자를 의미
+//          // * 0회 이상 반복을 의미
+//          // ? 앞에 위치하는 문자가 0또는 1회 일치
+//          // ?=.* 가 뜻하는 내용 => 임의의 문자(./영문대소문자, 숫자, 특수문자를 나타냄) 중 최소한으로 일치하는 내용에 대해서...
+//          // 유효성 검증 - password
+//          let passValue = $('#pass').val().trim();
+//          if (passValue.length < 1) {
+//             noProc($('#pass'), "패스워드를 입력하세요.");
+//             return false;
+//          }
+//          let regPass = /^(?=.*?[a-zA-Z])(?=.*?[0-9])(?=.*?[!@#$%^&*()]).{8,}$/;
+//          if (regPass.test(passValue)) {
+//             okProc($('#pass'));
+//          } else {
+//             noProc($('#pass'), "영문자,특수문자,숫자 포함 8자리이상");
+//             return false;
+//          }
+         
+//          // 유효성 검증 - 닉네임
+//          let nickValue = $('#nicknm').val().trim();
+//          if (nickValue.length < 1) {
+//             noProc($('#nicknm'), "닉네임을 입력하세요.");
+//             return false;
+//          }
+//          let regNick = /^(?=.*?[a-zA-Z])(?=.*?[0-9])(?=.*?[가-힣]).{3,10}$/;
+//          if (regNick.test(nickValue)) {
+//             okProc($('#nicknm'));
+//          } else {
+//             noProc($('#nicknm'), "한글,영어,숫자 포함 3~10자");
+//             return false;
+//          }
+         
+//          // 유효성 검증 - hp
+//          let hpValue = $('#hp').val().trim();
+//          if (hpValue.length < 1) {
+//             noProc($('#hp'), "전화번호를 입력하세요.");
+//             return false;
+//          }
+//          let regHp = /^[0-9]{3}-[0-9]{3,4}-[0-9]{4}$/;
+//          if (regHp.test(hpValue)) {
+//             okProc($('#hp'));
+//          } else {
+//             noProc($('#hp'), "형식에 맞게 입력하세요");
+//          }
+//          // [0-9a-zA-Z] => 메일아이디
+//          // +@[0-9a-zA-Z] => @naver / @google
+//          // +(\.[a-z]+){1,2} > .com 1회 또는 2회
+//          // 유효성 검증 - email
+//          let mailValue = $('#mail').val().trim();
+//          if (mailValue.length < 1) {
+//             noProc($('#mail'), "패스워드를 입력하세요.");
+//             return false;
+//          }
+//          let regMail = /^[0-9a-zA-Z]+@[0-9a-zA-Z]+(\.[a-z]+){1,2}$/;
+//          if (regMail.test(mailValue)) {
+//             okProc($('#mail'));
+//          } else {
+//             noProc($('#mail'), "형식에 맞게 입력하세요");
+//          }
+         
+      }
+      
+//       // 회원정보 저장 - insert (serialize 사용)
+      
+// //       Ajax를 사용해서 서버로 데이터를 보낼 때 서버가 이해할 수 있는 방식으로 데이터 형식을 변경해야 한다.
+// //       이때 사용하는 방법이 객체 직렬화이며, 데이터를 직렬화하면 하나의 객체로 모아서 하나의 덩어리로 전송가능하다.
+         
+// //       jQuery에서 제공하는 직렬화 메소드 2가지
+// //       - serialize      : key와 value로 이루어진 한쌍을 '&'문자로 구분한 형태 
+// //       - serializeArray : key와 value가 연관되어 있으며, 키를 통해 연관되는 값을 얻을 수 있는 형태
+         
+// //       let formData = $('form').serialize();
+// //       : form태그 내부 값을 name=value형태로 변경해 쿼리스트링을 만든다.
+// //       : 주의할점 - form데이터의 name을 vo생성 필드명으로 작성해야 함
+      
+// //       let data = $('form').serializeArray();
+// //       : form 데이터를 Object Array 형태로 만든다.
+      
+//       // 아이디 중복검사
+//       // keyup 이벤트 : 키를 눌렀다가 때는 순간
+      
+//      	 $('#id').on('change', function() {
+//         	 	$.ajax({
+//            		 url : 'idCheck.jsp',
+//             	 data : {
+//                	'mId' : $('#id').val()
+//             	},
+//             success : function(a) {
+//                if (a.cd == 'ok') {
+//                   $('#rst').html(a.str).css('color', 'green');
+//                } else {
+//                   $('#rst').html(a.str).css('color', 'red');
+//                }
+//             },
+//             error : function(xhr) {
+//                alert(xhr.status);
+//             },
+//             dataType : 'json'
+//          });
+//       });
+
+         
+//       // 비밀번호 체크
+//       $('#pass1').on('keyup', function(){
+//     	 let a = $('#pass').val();
+//     	 let b = $('#pass1').val();
+//     	 let c = "";
+//     	 if(b == ""){
+//     		 c = "";
+//     		 $('#ck').html(c);
+//     	 }
+//     	 else if(a != b){
+//     		 c = "비밀번호가 일치하지 않습니다.";
+//     		 $('#ck').css('color', 'red');
+//     		 $('#ck').html(c);
+//     	 }
+//     	 else{
+//     		 c = "비밀번호가 일치합니다.";
+//     		 $('#ck').css('color', 'green');
+//     		 $('#ck').html(c);
+//     	 }
+//       });
+      
+//       // 닉네임 중복 검사
+//       $('#nicknm').on('keyup', function() {
+//          $.ajax({
+//             url : 'nickCheck.jsp',
+//             data : {
+//                'mNick' : $('#nicknm').val()
+//             },
+//             success : function(a) {
+//                if (a.cd == 'ok') {
+//                   $('#rst1').html(a.str).css('color', 'green');
+//                } else {
+//                   $('#rst1').html(a.str).css('color', 'red');
+//                }
+//             },
+//             error : function(xhr) {
+//                alert(xhr.status);
+//             },
+//             dataType : 'json'
+//          });
+//       });
+		
+      // 우편번호 검색 버튼 누를때 모달창 띄우기 (카카오 api)
+      $('#modalBtn').on('click', function() {
+    	  $('#myModal').modal({backdrop : 'static'});
+    	  new daum.Postcode({
+              oncomplete: function(data) {
+                  // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                  // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                  // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                  var addr = ''; // 주소 변수
+                  var extraAddr = ''; // 참고항목 변수
+
+                  //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                  if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                      addr = data.roadAddress;
+                  } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                      addr = data.jibunAddress;
+                  }
+
+                  // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+                  if(data.userSelectedType === 'R'){
+                      // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                      // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                      if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                          extraAddr += data.bname;
+                      }
+                      // 건물명이 있고, 공동주택일 경우 추가한다.
+                      if(data.buildingName !== '' && data.apartment === 'Y'){
+                          extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                      }
+                      // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                      if(extraAddr !== ''){
+                          extraAddr = ' (' + extraAddr + ')';
+                      }
+                      // 조합된 참고항목을 해당 필드에 넣는다.
+                      document.getElementById("add3").value = extraAddr;
+                  
+                  } else {
+                      document.getElementById("add3").value = '';
+                  }
+
+                  // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                  document.getElementById('zip').value = data.zonecode;
+                  document.getElementById("add1").value = addr;
+                  // 커서를 상세주소 필드로 이동한다.
+                  document.getElementById("add2").focus();
+                  $('#myModal').modal('hide');
+                  
+              }
+          }).embed(wrap); 
+      
+      });
+
+       $('#sendBtn').on('click', function(){
+    	   let formData = $('form').serialize();
+           
+           $.ajax({
+              url : '/Breath/insert.Member',
+              type : 'post',
+              data : formData,
+              success : function(aa) {
+              	if(aa.cd == "ok"){
+              		alert("축하합니다!! 회원가입이 완료되었습니다.");
+   					window.location.replace("http://localhost/Breath/views/signin/signin.html");
+              	} else{
+              		alert("가입 실패");
+              	}
+              },
+              error : function(xhr) {
+                 alert(xhr.status);
+              },
+              dataType : 'json'
+           });
+       });
+       
+       
+</script>
+</html>

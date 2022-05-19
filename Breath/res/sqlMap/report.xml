@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="report">
+
+
+<resultMap class="report.vo.ReportVO" id="reportMap">
+	<result property="rprtNum" column="RPRT_NUM" />
+    <result property="rprtDt" column="RPRT_DT" />
+    <result property="rprtRsn" column="RPRT_RSN" />
+    <result property="rprtId" column="RPRT_ID" />
+    <result property="rprtDId" column="RPRT_D_ID" />
+    <result property="rprtStatus" column="RPRT_STATUS" />
+</resultMap>
+
+<insert id="insertReport" parameterClass="reportVO" >
+	<selectKey keyProperty="rprtNum" resultClass="String">
+		SELECT SEQ_REPORT.NEXTVAL FROM DUAL
+	</selectKey>
+	INSERT INTO REPORT(RPRT_NUM,RPRT_DT,RPRT_RSN,RPRT_ID,RPRT_D_ID,RPRT_STATUS)
+	VALUES(#rprtNum#,SYSDATE,#rprtRsn#,#rprtId#,
+			(SELECT MEM_ID
+			   FROM MEMBER
+			  WHERE NICKNAME = #rprtDId#),#rprtStatus#)
+</insert>
+
+<!-- ////////////////////////// 신고 관리 /////////////////////////// -->
+
+<!-- 전체 신고 수  -->
+<select id="reportCount" resultClass="int">
+
+	select count(*)
+	  from report
+	 where rprt_status = 1
+
+</select>
+
+<!-- 전체 & 처리 되지 않은 신고 조회  -->
+<select id="getAllreport" resultMap="reportMap">
+
+	select * from report
+	 where rprt_status = 1;
+	  
+</select>
+
+<!-- 처리된 신고 코드 업데이트 -->
+<update id="updateReportStatus" parameterClass="String">
+	
+	update report
+	   set rprt_status = 0
+	 where rprt_num = #rprtNum#
+
+</update>
+
+
+
+
+
+
+
+<!-- 전체 신고 수  -->
+<!-- 전체 신고 수  -->
+<!-- 전체 신고 수  -->
+
+
+
+
+
+</sqlMap>
+
+
+
+
+

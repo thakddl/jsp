@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Breading</title>
+  <script src="../../js/jquery-3.6.0.min.js"></script>
+  <script src="../../js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../../css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="./main.css" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js" integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js" integrity="sha512-eP6ippJojIKXKO8EPLtsUMS+/sAGHGo1UN/38swqZa1ypfcD4I0V/ac5G3VzaHfDaklFmQLEs51lhkkVaqg60Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+</head>
+<body>
+  
+  <!-- HEADER -->
+  
+  <header>
+    <div class="inner">
+      <div class="logo">
+        <div class="logo-main" onclick="location.href='/Breath/trainerHome/detail.do'">ChloeTing</div>
+      </div>
+      <ul class="main-menu">
+        <li class="item">
+          <div class="item__name" id="uploadbtn">업로드</div>
+     </li>
+        <li class="item">
+          <div class="item__name"></div>
+        </li>
+      </ul>
+    </div>
+  </header>
+  
+  <!-- <header>
+    <div class="inner">
+
+      <div class="logo">
+        <p class="main-logo">BEC</p>
+        <p class="sub-logo">Chloe Ting</p>
+      </div>
+    
+      <ul class="main-menu">
+        <li class="item">
+          <div class="item__name" id="uploadbtn">업로드</div>
+
+        </li>
+        <li class="item">
+          <div class="item__name" id="back">뒤로가기</div>
+        </li>
+        <li class="item">
+          <div class="item__name"></div>
+        </li>
+        
+      </ul>
+    </div>
+  </header> -->
+  <section class="main-intro">
+    <div class="inner">
+      <!-- <div class="contents"> -->
+        <div class="contents-text">
+          <div>
+            <div class="box intro-name">
+              CHLOE TING
+            </div>
+            <div class="intro-sub">
+              Certified Personal Trainer
+            </div>
+            <div class="intro-main">
+              Chloe is a leading fitness creator on YouTube with over 22M subscribers. Her goal is to make health and fitness accessible to all by providing free workout programs and sharing free recipes with her audience.
+            </div>
+          </div>
+        </div>
+        <div class="contents-pic">
+          <img src="https://chloeting.com/static/media/chloeting-footer.e237bb75.png" alt="">
+        </div>
+      <!-- </div> -->
+    </div>
+  </section>
+  
+  <!-- start for trainer video -->
+  <section class="video-container">
+    <div id="here">
+    <!-- 여기에 영상 들어가요 ^^ -->
+    </div>
+  
+  <!--VIDEO 업로드 Modal start -->
+	<div id="myModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content -->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" id="close1" class="close" data-dismiss="modal">&times;</button>
+					<h3 class="modal-title">Upload Video</h3>
+				</div>
+				<div class="modal-body">
+					<form id="upload-form" method="post" 
+					enctype="multipart/form-data">
+					<label for="file">파일</label>
+					<input type="file" name="atchId"><br>
+					<label for="content">내용</label>
+					<div class="form-group">
+					<textarea class="form-control" rows="5" name="content">
+					</textarea>
+					</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<input type="button" value="업로드" id="upload-file">
+					<button type="button" id="close" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--  VIDEO 업로드 Modal end -->
+	
+	<!--VIDEO 업데이트 Modal start -->
+	<div id="myModal1" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content -->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h3 class="modal-title">Update Video</h3>
+				</div>
+				<div class="modal-body">
+					<form id="update-form" method="post" 
+					enctype="multipart/form-data">
+					<div class="form-group">
+					<label for="contentNum">게시번호</label>
+					<input class="form-control" type="text" name="contentNum" placeholder="수정할 게시번호를 입력하세요">
+					</div>
+					<label for="file">파일</label>
+					<input type="file" name="atchId"><br>
+					<label for="content">내용</label>
+					<div class="form-group">
+					<textarea class="form-control" rows="5" name="content">
+					</textarea>
+					</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-info" value="수정하기" id="update-file">
+					<button type="button" id="close2" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--  VIDEO 업데이트 Modal end -->
+
+<script>
+ // 페이지 로드할때 비디오 리스트 보여주는 함수 실행
+ window.onload = function() {
+	  let url = window.location.href;
+	  getAllVideoList(url);
+	};
+
+// 비디오 리스트 보여주는 함수
+function getAllVideoList(url){
+	$.ajax({
+		async: true,
+		url : '/Breath/getAllVideoList.Video',
+		type : 'get',
+		data : {
+			'url' : url
+		},
+		success : function(res) {
+			$('#here').html(res);
+		},
+		error : function(xhr) {
+			alert(xhr.status);
+		},
+		dataType : 'html'
+		
+	});
+}
+ 
+ // 업로드 버튼 눌렀을 때 모달창 띄우기
+ $('#uploadbtn').on('click', function(){
+	 $('#myModal').modal({backdrop : 'static'});
+ });
+ 
+ $('.modal').on('hidden.bs.modal', function (e) {
+	    console.log('modal close');
+	  $(this).find('form')[0].reset();
+ });
+ 
+ // 모달창에서 업로드 버튼 눌렀을 때 비디오 업로드
+ $('#upload-file').on('click', function(){
+	 var form = $('#upload-form')[0];
+     var formData = new FormData(form);
+	 
+	 $.ajax({
+		url : '/Breath/insert.Video',
+		type : 'post',
+		data : formData,
+			success : function(res) {
+			  $('#here').html(res);
+			  $('#close').click();
+			},
+			error : function(xhr) {
+				alert(xhr.status);
+			},
+			dataType : 'html',
+			contentType : false,
+	        processData : false,
+	        cache: false
+		});  
+ });
+ 
+ // 모달창 닫았을 때 폼 값 리셋
+ $('.modal').on('hidden.bs.modal', function (e) {
+	    console.log('modal close');
+	  $(this).find('form')[0].reset();
+ });
+ 
+ // 수정버튼 눌렀을 때 모달창 띄우기
+ function updatefile(number){
+		$('#myModal1').modal({backdrop : 'static'});
+		
+		// 수정하기 버튼 눌렀을때 해당 비디오 파일 수정 
+		$('#update-file').on('click', function(){
+			var form = $('#update-form')[0];
+	    	var formData = new FormData(form);
+	    	
+		 $.ajax({
+			url : '/Breath/update.Video',
+			type : 'post',
+			data : formData,
+				success : function(res) {
+				  $('#here').html(res);
+				  $('#close2').click();
+				},
+				error : function(xhr) {
+					alert(xhr.status);
+				},
+				dataType : 'html',
+				contentType : false,
+		        processData : false,
+		        cache: false
+			}); 
+		}); 
+	}
+ 
+ $('#back').on('click',function(){
+	location.href="./adChloeMain.jsp"; 
+ });
+ 
+ function deletefile(number2) {
+	 let dlNum = "delete"+ number2;
+	 // console.log(dlNum);
+	 $('#' + dlNum).on('click', function(){
+	 let ok = confirm("정말 삭제하시겠습니까?(삭제한 파일은 복구되지 않습니다)"); 
+	 if(ok){
+		  $.ajax({
+			url : '/Breath/delete.Video',
+			type : 'post',
+			data : { 'contentNum' : number2 },
+				success : function(res) {
+				  $('#here').html(res);
+				},
+				error : function(xhr) {
+					alert(xhr.status);
+				},
+				dataType : 'html'
+			}); 
+	 }
+  else{
+		alert("취소했습니다.");
+		location.reload();
+  } 
+	 });
+ }
+ 
+ </script> 
+  	
+
+</body>
+</html>

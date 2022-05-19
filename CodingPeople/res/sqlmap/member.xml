@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="member">
+
+	<!-- ▼ Member Table 전체 컬럼 resultMap -->
+  	<resultMap id="memVO" class="MemberVO" >
+		<result property="memId"	 column="MEM_ID"/>
+		<result property="memPass"	 column="MEM_PASS"/>
+		<result property="mgId"		 column="MG_ID"/>
+		<result property="memName"	 column="MEM_NAME"/>
+		<result property="memBir"	 column="MEM_BIR"/>
+		<result property="memAdd1"	 column="MEM_ADD1"/>
+		<result property="memAdd2"	 column="MEM_ADD2"/>
+		<result property="memZip"	 column="MEM_ZIP"/>
+		<result property="memTel"	 column="MEM_TEL"/>
+		<result property="memMail"	 column="MEM_MAIL"/>
+		<result property="memCoin"	 column="MEM_COIN"/>
+		<result property="memPoint"	 column="MEM_POINT"/>
+		<result property="msId"		 column="MS_ID"/>
+		<result property="memDate"	 column="MEM_DATE"/>
+	</resultMap> 
+
+  	<resultMap id="cHistoryVO" class="CoinHistoryVO" >
+		<result property="cHistoryNo"      column="CHISTORY_NO"/>
+		<result property="cEventId"        column="CEVENT_ID"/>
+		<result property="cHistoryDate"    column="CHISTORY_DATE"/>
+		<result property="cHistoryCoin"    column="CHISTORY_COIN"/>
+		<result property="cHistoryBalance" column="CHISTORY_BALANCE"/>
+		<result property="memId"           column="MEM_ID"/>
+	</resultMap> 	
+  	<resultMap id="PointHistoryVO" 			class="point.history.VO.PointHistoryVO" >
+		<result property="phistoryNo"       column="PHISTORY_NO"/>
+		<result property="peventId"         column="PEVENT_ID"/>
+		<result property="phistoryDate"     column="PHISTORY_DATE"/>
+		<result property="phistoryPoint"    column="PHISTORY_POINT"/>
+		<result property="phistoryBanlance" column="PHISTORY_BANLANCE"/>
+		<result property="memId"            column="MEM_ID"/>
+	</resultMap> 	
+  	<resultMap id="BbuyHistoryVO" 			class="book.VO.BbuyHistoryVO" >
+		<result property="bbHistoryNo"      column="BB_HISTORY_NO"/>
+		<result property="memId"            column="MEM_ID"/>
+		<result property="bookinfoId"       column="BOOKINFO_ID"/>
+		<result property="bbHistoryQty"     column="BB_HISTORY_QTY"/>
+		<result property="bbHistoryPrice"   column="BB_HISTORY_PRICE"/>
+		<result property="bbHistoryDate"    column="BB_HISTORY_DATE"/>
+		<result property="bbHistoryAmt"     column="BB_HISTORY_AMT"/>
+		<result property="bookGradeId"      column="BOOK_GRADE_ID"/>
+	</resultMap>
+  	<resultMap id="BsellHistoryVO" 			class="book.VO.BsellHistoryVO" >
+		<result property="bsHistoryNo"      column="bs_history_no"/>
+		<result property="memId" 		    column="mem_id"/>
+		<result property="bookinfoId"       column="bookinfo_id"/>
+		<result property="bsHistoryQty"     column="bs_history_qty"/>
+		<result property="bsHistoryCost"    column="bs_history_cost"/>
+		<result property="bsHistoryDate"    column="bs_history_date"/>
+		<result property="bsHistoryAmt"     column="bs_history_amt"/>
+		<result property="bookGradeId"      column="book_grade_id"/>
+	</resultMap>
+  	<resultMap id="BookInfoVO" 			class="book.VO.BookInfoVO" >
+		<result property="bookInfoId"       column="BOOKINFO_ID"/>
+		<result property="bookInfoNm" 		column="BOOKINFO_NM"/>
+		<result property="categoryId"       column="CATEGORY_ID"/>
+	</resultMap>
+	 	
+	
+<!-- 		  MEM_ID   = #memId# 회원아이디 / Update 제외 -->
+<!-- 		  MEM_PASS = #memPass#	  비밀번호 -->
+<!-- 		  MG_ID    = #mgId#      회원등급 -->
+<!-- 		  MEM_NAME = #memName#   이름 -->
+<!-- 		  MEM_BIR  = #memBir#    생일 -->
+<!-- 		  MEM_ADD1 = #memAdd1#   주소 -->
+<!-- 		  MEM_ADD2 = #memAdd2#   상세주소 -->
+<!-- 		  MEM_ZIP  = #memZip#    우편번호 -->
+<!-- 		  MEM_TEL  = #memTel#    전화번호 -->
+<!-- 		  MEM_MAIL = #memMail#   이메일 -->
+<!-- 	      MEM_COIN = #memCoin#   코딩코인 -->
+<!-- 		  MEM_POINT= #memPoint#  활동포인트 -->
+<!-- 		  MS_ID    = #msId#      회원상태 -->
+<!-- MEM_DATE = #memDate# --> <!-- 회원가입일자 / Update 제외 -->
+	
+	<!-- ▼ 전체 회원 조회 쿼리 -->
+	<select id="getMember" resultClass="MemberVO" resultMap="memVO">
+	<!-- <select id="selectAllMember"> -->
+		select *
+		from member
+  		 where Mem_ID = #memId#
+	</select>
+	
+	<!-- ▼ 선택회원 정보 수정 쿼리 -->
+	<update id="updateCoin" parameterClass="MemberVO">
+		UPDATE MEMBER
+		   SET
+	       	   MEM_COIN = MEM_COIN + #memCoin#   <!-- 코딩코인 -->
+  	     WHERE MEM_ID = #memId#
+  		 
+	 </update>
+
+	
+	<update id="insertCoinHistory" parameterClass="CoinHistoryVO">
+  		 INSERT INTO COIN_HISTORY (
+			    CHISTORY_NO,
+			    CEVENT_ID,
+			    CHISTORY_DATE,
+			    CHISTORY_COIN,
+			    CHISTORY_BALANCE,
+			    MEM_ID
+		) VALUES (
+				#cHistoryNo#,
+				#cEventId#,
+				sysdate,
+				#cHistoryCoin#,
+				#cHistoryBalance#,
+				#memId#  		
+			)
+	</update>
+	
+	<select id="getPHistoryList" parameterClass="String" resultMap="PointHistoryVO" resultClass="point.history.VO.PointHistoryVO">
+		SELECT *
+		FROM POINT_HISTORY
+		WHERE MEM_ID = #memId#
+		order by 4 DESC
+	</select>
+	
+	<select id="getCHistoryList" parameterClass="String" resultMap="cHistoryVO" resultClass="CoinHistoryVO">
+		SELECT *
+		FROM COIN_HISTORY
+		WHERE MEM_ID = #memId#
+		order by 3 DESC
+	</select>
+	
+	<select id="getBbuyHistoryVO" parameterClass="String" resultMap="BbuyHistoryVO" resultClass="book.VO.BbuyHistoryVO">
+		SELECT *
+		FROM BBUY_HISTORY
+		WHERE MEM_ID = #memId#
+		order by 6 DESC
+	</select>
+	
+	<select id="getBsellHistoryVO" parameterClass="String" resultMap="BsellHistoryVO" resultClass="book.VO.BsellHistoryVO">
+		SELECT *
+		FROM BSELL_HISTORY
+		WHERE MEM_ID = #memId#
+		order by 6 DESC
+	</select>
+	
+	<select id="getBookInfoVO" parameterClass="String" resultMap="BookInfoVO" resultClass="book.VO.BookInfoVO">
+		SELECT *
+		FROM BOOKINFO
+		WHERE BOOKINFO_ID = #bookInfoId#
+	</select>
+	
+	<select id="getChistroySeq" resultClass="String">
+		SELECT CHISTORY_SEQ.nextval FROM DUAL
+	</select>
+	
+	
+	
+</sqlMap>
